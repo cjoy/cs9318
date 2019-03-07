@@ -2,6 +2,12 @@ import json
 import ast
 import re
 
+def print_tree(root, indent=0):
+  print(' ' * indent, root)
+  if len(root.children) > 0:
+    for child in root.children:
+      print_tree(child, indent+4)
+
 def myfind(s, char):
   pos = s.find(char)
   if pos == -1: # not found
@@ -64,6 +70,34 @@ class Tree(object):
     assert isinstance(node, Tree)
     self.children.append(node)
 
+
+
+def make_tree(tokens):
+  if len(tokens) == 0:
+    return None
+  elif tokens[0] is not '[' and tokens[0] is not ']':
+    return Tree(tokens[0], make_tree(tokens[1:]))
+  else:
+    return make_tree(tokens[1:])
+
+
+def num_nodes(tree):
+  total = 1
+  if len(tree.children) > 0:
+    for child in tree.children:
+      total += num_nodes(child)
+  return total
+
+
+
+t = Tree('*', [Tree('1'),
+               Tree('2'),
+               Tree('+', [Tree('3'),
+                          Tree('4')])])
+
+
+print('Number of nodes:', num_nodes(t))
+# print_tree(make_tree(toks))
 
 
 # s = 0
