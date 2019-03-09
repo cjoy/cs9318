@@ -23,5 +23,13 @@
   * Discount coupons
   * Customer complaint calls
   * Lifestyle studies
-* Target marking
-  * Fining clusters of "model" 
+* Target marketing
+  * Finding clusters of "model" 
+  * Determine customer piuschasing patterns over time
+* Cross-market analysis
+  * Association/co-relations between product & prediction based on such association
+* Customer profiling
+  * What types of customer buy what products (clustering or classification)
+* Customer requirement analysis
+  * Identifying the best products for different cusotmers
+  * Predict what factors 

@@ -88,13 +88,15 @@ def num_nodes(tree):
       total += num_nodes(child)
   return total
 
+def max_depth(tree):
+  # max of the size of the left and right subtree
+  
 
 
 t = Tree('*', [Tree('1'),
                Tree('2'),
                Tree('+', [Tree('3'),
                           Tree('4')])])
-
 
 print('Number of nodes:', num_nodes(t))
 # print_tree(make_tree(toks))
