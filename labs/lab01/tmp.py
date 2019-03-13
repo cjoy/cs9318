@@ -53,9 +53,6 @@ str_tree = '''
   ]
 '''
 toks = str_to_tokens(str_tree)
-print(toks)
-
-
 
 class Tree(object):
   def __init__(self, name='ROOT', children=None):
@@ -72,61 +69,55 @@ class Tree(object):
 
 
 
+# def make_tree(tokens):
+#   tree = Tree(tokens[0])
+#   parent = tree
+#   child = tree
+#   ancester = []
+#   i = 1
+#   while i < len(tokens):
+#     if tokens[i] == '[':
+#       ancester.append(parent)
+#       parent = child
+#       i += 1
+#       continue
+
+#     if tokens[i] == ']':
+#       i += 1
+#       parent = ancester.pop()
+#       continue
+      
+#     child = Tree(tokens[i])
+#     parent.add_child(child)
+#     i += 1   
+#   return tree
+
+
 def make_tree(tokens):
-  if len(tokens) == 0:
-    return None
-  elif tokens[0] is not '[' and tokens[0] is not ']':
-    return Tree(tokens[0], make_tree(tokens[1:]))
-  else:
-    return make_tree(tokens[1:])
+  root = Tree(tokens[0])
+  parent = child = root
+  children = []
+  for token in tokens[1:]:
+    if token is '[':
+      children.append(parent)
+      parent = child
+    elif token is ']':
+      parent = children.pop()
+    else: 
+      child = Tree(token)
+      parent.add_child(child)
+  return root
 
 
-def num_nodes(tree):
-  total = 1
-  if len(tree.children) > 0:
-    for child in tree.children:
-      total += num_nodes(child)
-  return total
-
-def max_depth(tree):
-  # max of the size of the left and right subtree
-  
+def max_depth(root):
+  if root.children is None or len(root.children) is 0:
+    return 1
+  depths = [1]
+  for child in root.children:
+    depths.append(1 + max_depth(child))
+  return max(depths)
 
 
-t = Tree('*', [Tree('1'),
-               Tree('2'),
-               Tree('+', [Tree('3'),
-                          Tree('4')])])
-
-print('Number of nodes:', num_nodes(t))
-# print_tree(make_tree(toks))
-
-
-# s = 0
-# m = 0
-# for t in toks:
-#   if t == '[':
-#     s += 1
-#   elif t == ']':
-#     s -= 1
-
-#   if s >= m:
-#     m = s
-
-
-# a = []
-# for i in range(m+1):
-#   a.append([])
-
-
-# s = 0
-# for t in toks:
-#   if t == '[':
-#     s += 1
-#   elif t == ']':
-#     s -= 1
-#   else:
-#     a[s].append(t)
-
- 
-# print(a)
+t = make_tree(toks)
+print('Max Depth:', max_depth(t))
+print_tree(t)
