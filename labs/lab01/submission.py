@@ -51,8 +51,25 @@ class Tree(object):
         assert isinstance(node, Tree)
         self.children.append(node)
 
-def make_tree(tokens): # do not change the heading of the function
-    pass # **replace** this line with your code    
+def make_tree(tokens):  # do not change the heading of the function
+  root = Tree(tokens[0])
+  parent = child = root
+  children = []
+  for token in tokens[1:]:
+    if token is '[':
+      children.append(parent)
+      parent = child
+    elif token is ']':
+      parent = children.pop()
+    else: 
+      child = Tree(token)
+      parent.add_child(child)
+  return root
 
-def max_depth(root): # do not change the heading of the function
-    pass # **replace** this line with your code
+def max_depth(root):  # do not change the heading of the function
+  if root.children is None or len(root.children) is 0:
+    return 1
+  depths = [1]
+  for child in root.children:
+    depths.append(1 + max_depth(child))
+  return max(depths)
