@@ -3,6 +3,9 @@ import pandas as pd
 import numpy as np
 
 ################# Question 1 #################
+def create_inital_matrix(x, num_bins):
+  return [[-1 for i in range(len(x))] for b in range(num_bins)]
+
 def sse(arr):
   E = np.mean(arr)
   return np.sum([(x-E)**2 for x in arr])
@@ -25,8 +28,8 @@ def v_opt_dp_util(x, num_bins, matrix, scores, matrix_x, remaining_bins):
 
 
 def v_opt_dp(x, num_bins):
-  matrix = [[-1 for i in range(len(x))] for j in range(num_bins)]
-  scores = [[-1 for i in range(len(x))] for j in range(num_bins)]
+  matrix = create_inital_matrix(x, num_bins)
+  scores = create_inital_matrix(x, num_bins)
 
   v_opt_dp_util(x, num_bins, matrix, scores, 0, num_bins - 1)
 
@@ -43,31 +46,10 @@ def v_opt_dp(x, num_bins):
   return matrix, bins
 
 ################# Stuff for testing #################
-# x = [3, 1, 18, 11, 13, 17]
-# num_bins = 4
-# matrix, bins = v_opt_dp(x, num_bins)
-# print('bins = ', bins)
-# print('matrix = ')
-# for row in matrix:
-#   print(row)
-
-# x = [7, 9, 13, 5]
-# num_bins = 4
-# v_opt_dp(x, num_bins)
-
-
-
-# The input contains data (in a list) and the number of bins (an integer).
-# You are required to output the binning result and the matrix computed by the algorithm.
-#
-# The matrix entries record optimal binning cost for a suffix of the input array using a certain number of bins. You should assign -1 to all the invalid solutions.
-#
-# Output:
-#
-# Bins = [[3, 1], [18], [11, 13], [17]]
-# Matrix =
-# [-1, -1, -1, 18.666666666666664, 8.0, 0]
-# [-1, -1, 18.666666666666664, 2.0, 0, -1]
-# [-1, 18.666666666666664, 2.0, 0, -1, -1]
-# [4.0, 2.0, 0, -1, -1, -1]
-#
+x = [3, 1, 18, 11, 13, 17]
+num_bins = 4
+matrix, bins = v_opt_dp(x, num_bins)
+print('bins = ', bins)
+print('matrix = ')
+for row in matrix:
+  print(row)
