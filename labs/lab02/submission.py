@@ -1,55 +1,87 @@
-## import modules here 
+# import modules here 
 import pandas as pd
 import numpy as np
 
+
 ################# Question 1 #################
 def create_inital_matrix(x, num_bins):
-  return [[-1 for i in range(len(x))] for b in range(num_bins)]
+  return [[-1 for b in range(len(x))] for a in range(num_bins)]
 
 def sse(arr):
+  if len(arr) == 0: return 0
   E = np.mean(arr)
   return np.sum([(x-E)**2 for x in arr])
 
-def v_opt_dp_util(x, num_bins, matrix, scores, matrix_x, remaining_bins):
-  if (num_bins - remaining_bins - matrix_x >= 2) or (len(x) - matrix_x <= remaining_bins):
-    return
 
-  v_opt_dp_util(x, num_bins, matrix, scores, matrix_x + 1, remaining_bins)
 
-  if (remaining_bins == 0):
-    matrix[remaining_bins][matrix_x] = np.var(x[matrix_x:]) * len(x[matrix_x:])
-    return
+bins = {}
 
-  v_opt_dp_util(x, num_bins, matrix, scores, matrix_x, remaining_bins - 1)
-  matrix_l = [matrix[remaining_bins - 1][matrix_x + 1]]
-  matrix_l.extend( [matrix[remaining_bins - 1][i] + (i - matrix_x) * np.var(x[matrix_x:i]) for i in range(matrix_x + 2, len(x))])
-  matrix[remaining_bins][matrix_x] = min(matrix_l)
-  scores[remaining_bins][matrix_x] = matrix_l.index(min(matrix_l)) + matrix_x + 1
+def v_opt_dp_util(x, num_bins, curr_bin, tab, compute):
 
+  remain_bins = num_bins - curr_bin
+
+  scores = {}
+
+  for b in range(1, len(x)):
+    head = x[:b]
+    tail = x[b:]
+
+    print('\t'*tab, head, curr_bin, ' - ', tail, remain_bins)
+
+    if curr_bin == 1:
+      print('\t'*tab,'sse head - ', sse(head))
+      compute[curr_bin][b-1] = sse(head)
+      # if str(head) not in scores: scores[str(head)] = [sse(head)]
+      # else: scores[str(head)].append(sse(head))
+      scores[str(head)] = sse(head)
+
+    if remain_bins == 1:
+      print('\t'*tab,'sse tail - ', sse(tail))
+      compute[curr_bin][b-1] = sse(tail)
+      # if str(tail) not in scores: scores[str(tail)] = [sse(tail)]
+      # else: scores[str(tail)].append(sse(tail))
+      scores[str(tail)] = sse(tail)
+
+ 
+    if remain_bins > 1:
+      v_opt_dp_util(tail, num_bins, curr_bin+1, tab+1, compute)
+
+  if len(scores) > 0:
+    min_key = min(scores, key=scores.get)
+    min_score = scores[min_key]
+    print('\t'*tab,'min_key',min_key, 'min_score', min_score, 'total_cost', 0, '\t', 'scores -', scores)
+    print()
+    bins[curr_bin] = min_key
+
+  print()
+
+  # v_opt_dp(x[1:], num_bins - 1)
+
+  # print(bins)
 
 def v_opt_dp(x, num_bins):
-  matrix = create_inital_matrix(x, num_bins)
-  scores = create_inital_matrix(x, num_bins)
+  compute = create_inital_matrix(x, num_bins)
+  v_opt_dp_util(x, num_bins, 1, 0, compute)
 
-  v_opt_dp_util(x, num_bins, matrix, scores, 0, num_bins - 1)
+  for row in compute:
+    print(row)
 
-  nxt = scores[-1][0]
-  prev = nxt
-  bins = [x[:nxt]]
+  print('bins = ', bins)
 
-  for i in range(len(scores) - 2, 0, -1):
-    nxt = scores[i][nxt]
-    bins.append(x[prev:nxt])
-    prev = nxt
-  bins.append(x[prev:])
+if __name__ == '__main__':
+  x = [3, 1, 18, 11, 13, 17]
+  num_bins = 4
+  v_opt_dp(x, num_bins)
 
-  return matrix, bins
+  # x = [7, 9, 13, 5]
+  # num_bins = 3
+  # v_opt_dp(x, num_bins)
 
-################# Stuff for testing #################
-x = [3, 1, 18, 11, 13, 17]
-num_bins = 4
-matrix, bins = v_opt_dp(x, num_bins)
-print('bins = ', bins)
-print('matrix = ')
-for row in matrix:
-  print(row)
+  # x = [3, 1, 18, 11, 13, 17]
+  # num_bins = 4
+  # v_opt_dp(x, num_bins)
+  # matrix, bins = v_opt_dp(x, num_bins)
+  # print('bins = ', bins)
+  # print('matrix = ')
+  # for row in matrix:
+  #   print(row)
