@@ -1,9 +1,7 @@
-## import modules here 
-import pandas as pd
 from numpy import product
 
 ################# Question 1 #################
-def multinomial_nb(training_data, sms):# do not change the heading of the function
+def multinomial_nb(training_data, sms):
   # Meta for later calculations
   vocabulary = set([k for t in training_data for k in t[0]])
   # Prior probability given class: P(C) = N_C / N
