@@ -25,7 +25,7 @@
   * Lifestyle studies
 * Target marketing
   * Finding clusters of "model" 
-  * Determine customer piuschasing patterns over time
+  * Determine customer purchasing patterns over time
 * Cross-market analysis
   * Association/co-relations between product & prediction based on such association
 * Customer profiling
