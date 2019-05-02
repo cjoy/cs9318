@@ -1,7 +1,14 @@
-# Introduction to Data Warehousing and Data Mining
-## Summary 
+# 1. Introduction to Data Warehousing and Data Mining
+## Overview of Introduction 
+* Data mining: discovering interesting patterns from large amounts of data
+* Natural evolution of db technology
+* KDD process involved data cleaning, data integration, data selection, transformation, data mining, pattern evaluation and knowledge presentation
+* Data mining functionalities: characterisation, discrimination, association, classification, clustering, outlier and trend analysis
+* Data mining systems and architectures
+* Major issues in data mining: Different types of data, performance, different DM languages, 
 ## Data Mining
-* Extraction of interesting patterns from huge amounts of dta
+* Extraction of interesting patterns from huge amounts of data
+* Searching for patters of interest
 * Also known as:
   * knowledge discovery in databases (KDD)
   * knowledge extracton
@@ -37,34 +44,208 @@
   * Multidimensional summary reports
   * Statistical summary infomation
 ## Knowledge Discovery Process
+![KDD Process](assets/kdd.png)
+* Learning the application domain
+  * Relevant prior knowledge and goals of application
+* Data Selection: Creating a target data set
+* Data Cleaning and Preprocessing:
+* Data Reduction and transformation
+  * Finding useful features, dimenisonality/variable reduction and invarient representatoin
+* Choosing functions of data mining
+  * Summarization, classification, regression, association and clustering
+* Choosing the mining algoirthms
+* Pattern evaluation and knowledge presentation
 ## Data Mining and Business Intelligence
+![Data Mining and Busienss Intelligence](assets/dmbi.png)
 ## Architecture - Typical Data Mining System
+![Architecture](assets/dmarchi.png)
 ## Kinds of Data
+* Relational Database
+* Data Warehouse
+* Transactional Database
+* Advanced database and information repository
+  * Object-relational database
+  * Spatial and temporal data
+  * Time-series data
+  * Stream data
+  * Multimedia database
+  * Heterogeneous and legacy database
+  * Text databases & WWW
 ## Data Mining Functinalities
+* Cocept Description: Characterization and discriminiation
+  * Generalize, summarize and contrast characteristics
+* Association (correlation and causality)
+  * Diaper -> Beer [0.5%, 75%]
+* Classification and Prediction
+  * Construct models that descripbe and distinguish classes / concepts for future prediction
+    * Eg. Classify countries based on climate or classify cars based on gas mileage
+  * Presentation: decision-tree, classification rule, neural network
+  * Predict some unkown data
+* Cluster Analysis
+  * Class label is unknown. We group data so we can form new classes
+  * Maximize intra-class similarity & minimizing interclass similarity
+* Outlier analysis
+  * Outlier: a data object that doesn't comply with the general behaviour of the data
+  * Might be in the form of noise or excpetion. Not useful for insights
+* Trend and evaluation analysis
+  * Trend and deviation, ie. regression analysis
+  * Sequential pattern mining, periodicity analysis
+  * Similarity-based analysis
 ## Patterns in data
+* DM may produce lots of patterns, but not all of them are useful.
+* Interstingness Measures
+  * A patter that's interesting and easily understood by humans, valid on new or test data with some degress of certainty or some hypothesis that the user is trying to confirm
+* Subjective vs Objective Interestingness Measures:
+  * Subjective: Basd on the user's belief in the data.
+  * Objective: based on statistics and structs of patterns.
+* Completeness
+  * Finding all the intersting patterns
+  * Can a DM system find all the interesting patterns?
+  * Heuristic based vs. exhaustive search
+  * Association vs Classification vs Clustering
+* Optimisation Problem
+  * Search for only intersting patterns
+  * Can a DM system find only the intesting patterns?
+  * Method:
+    * Generate all the patterns and then filter out the unintersting ones
+    * Mining Query Optimization: Generate only the intersting patterns 
 ## Classification Schemes
+* General Functionality
+  * Descriptive data mining
+  * Predictive data mining
+* Different views, different classifications
+  * Kinds of data to be mined
+  * Kinds of knowledge to be discovered
+  * Kinds of techniques utilized
+  * Kinds of applications adapted 
 ## Multi-Deimension View of Data Minig
+* Data to be mined
+  * Relational, data warehouse, transactional, stream, object-oriented/relational, active, spatial, time-series, text, multi-media, heterogeneneous. legacy, webpages
+* Knowledge to be mined
+  * Characterization, discrimination, association, classification, clustering, trend/deviation, outlier analysis
+* Techniques Utilised
+  * Database-oriented, data warehouse (OLAP), Machine Learning, Statistics, Visualisations
+* Applications Adapted
+  * Retail, telecommunication, banking, fraud analysis, bio-data mining, stock market analysis, web mining
 ## Issues in Data Mining
+* Mining Methodolody
+  * Mining knowledge in different sort of formats: biodata, stream, web etc
+  * Performaces: efficiency, effectiveness and scalability
+  * Pattern evaluation
+  * Incorporation of background knowledge
+  * Handling noise and imcomplete data
+  * Parallel, distributed and incremental mining methods
+  * Knowledge Fusion: Integration fo discoveryed knowledge with existing knowledge
+* User Interaction
+  * Data mining query languages and ad-hoc mining
+  * Expression and visualization of data mining results
+  * Interactive mining of knowledge at multiple levels of abstraction
+* Applications and social impacts
+  * Domain-specific data mining & invisible data mining
+  * Protection of data security, integrity and privacy
 
 
-# Data Warehouse and OLAP
+# 2. Data Warehouse and OLAP
 ## Overview of Data Warehouse and OLAP
 ## Data Analysis Problems
+* Redundant data found across departments
+* Hetergeneous sources
+  * Relations DBMS
+  * Unstructured data in files (eg. MS Excel) and in documents (MS Word)
+* Data is suited for different operating systems 
+  * Doesn't integrate well across departments
+* Bad data quality
+  * Mising data, imprecise data etc
+* Data is volatile
+  * Data deleted in operating systems
+    * Data changes over time - no historical information
 ## Data Warehouse
+* Process of constructing and using data warehouses
+* Is subject-oriented, integrated, time-variant and non-volatile collection of data in support of management's decision making process
 ### Subject Oriented
+* Provide a clear view around the particular subject
+  * ie. don't include data that's not relevant in the decision support process
+* Organised around major subjects such as customer, product, sales etc
 ### Integrated
+* Integrating multiple heterogeneous data sources 
+  * Relational DBs, Flat files etc
+* Data cleaning and data integration techniques are applied
+  * Ensure consistency in naming conventions, encoding structures, attribute measures, etc. among differnt data sources
+  * When data is moved to the warehouse, it's normalised
 ### Time Variant
+* Time horizon for data warehouse is significantly longer than that of operational systems
+  * Operational Database: current value data
+  * Data warehouse data: provide information from a historical perpective
+* Every key structure in the data warehouse
+  * Contains an element of time, explicity or implicitly
+  * The Key of operational data may or may not contain time element.
 ### Non-Volatile
+* Once data is in the DW it will not change. So historical data in a data warehouse should never be altered.
+* A physically separate store of data transformed from the operational environment
+* Operational update of data doesn't occus in the data warehouse environment. Does not require transaction processing, recovery, and concurrency control mechnisms
+* Requires only two operations in data accessing:
+  * Initial loading of data
+  * Access of data
 ## Data Warehouse Architecture
+* Extract data from different data sources
+  * Clean / Transformation
+* Bulk Load / Refresh
+  * Warehouse is offline
+* OLAP-server provides multidimensional view
+* Multidimensional-OLAP
+* Relational-OLAP
+![DW Architecture](assets/dwarchi.png)
 ## Separate Data Warehouse?
+* High performance for both systems
+  * DBMS: tuned for OLTP: acess methods, indexing, concurrency control, recovery
+  * Warehouse: tuned for OLAP: complex OLAP queries, multidimensional view, consolidation
+* Different functions and different data:
+  * Missing data: decision support requres hostrical data which normal DBs don't maintain (ie. every new time-period a frame is created)
+  * Data consolidation: decision support requires consolidation (ie. aggregation and summarisation) from heterogeneous sources
+  * Data quality: different sources usually have inconsistent representations, codes and formaats which have to be reconciled.
 ## OLAP Servers
+* Present business users with multidimensional data from data warehouses or data marts, without regarding how the data is stored.
+* Different workloads (OLTP vs OLAP)
+* Queries hard/infeasible for OLTP, e.g,
+  * Which week we haved the largest amount of sales
+  * Does the sales of diary products increase over time?
+  * Generate a spreadsheet of total sales by state and by year.
+* Difficult to represent these queries by using SQL
 ## OLTP vs. OLAP
+![OLAP VS OLTP](assets/olap-vs-oltp.png)
+## Databases vs Data Warehouses
+![DB VS DW](assets/db-vs-dw.png)
 ## The Multidimensional Model
+* Datawarehouse is based on a multidimensional data model which views data in the form of a **data cube**, which is a multidimensional generalisation of 2D spreadsheet
+* Data cubes are modeled using dimensions and facts.
+* **Facts**: the subject it models. Facts are numerical measures. 
+* **Dimensions**: context of the measures
+* **Measures**: numbers that can be aggregated
+* **Hierarchies**: provides contexts of different granularities (aka. grains)
+* Goals for dimensional modeling:
+  * Surround facts with as much relevant context (dimensions) as possible
+### Example
+* Subject: analyze total sales and profits
+* Fact: Each Sales Transaction
+  * Measure: Dollars_Sold, Amount_Sold, Cost
+  * Calculated Measure: Profit
+* Dimensions:
+  * Store
+  * Product
+  * Time
 ## Visualizing the Cubes
+* 2D view of sales data for a "AllElectronic" according to time and item.
+  - ![2-D view of sales](assets/dc-2d.png)
+* 3D view of sales data for a "AllElectronic" according to time, item & location.
+  - ![2-D view of sales](assets/dc-3d.png)
 ## 3D Cube and Heirarchies
 ## Cuboids
 ## Properties of Operations
-## Common OLAP Operations
+## OLAP Operations
+* **Roll-up**: 
+* **Drill-down**: 
+* **Slice and dice**: 
+* **Pivot (Rotate)**: 
 ## Sice and Dice Queries
 ## Pivoting
 ## Logical Models
@@ -76,20 +257,8 @@
 ### MOLAP
 ### HOLAP
 
-# Linear Algebra Review
-## Overview of Linear Algebra
-## Objects and Their Representations
-## Basic Concepts
-## Column Vector
-## Linearity
-## Matrix
-## Systems of Linear Equationns
-## Inner Product
-## Eigenvalues/vectors
-## Similar Matrices
-## Singular Vector Decompositions
 
-# Preprocessing 
+# 3. Preprocessing 
 ## Overview of Preprocessing
 ## Major Tasks
 ## Noisy Data
@@ -103,7 +272,7 @@
 ### Discretization and Concept Hierarchy Generation
 
 
-# Classification
+# 4. Classification
 ## Overview of Classification
 ## Classification vs Prediction
 ## Classification and Regression
@@ -120,9 +289,9 @@
 ## Text Classification
 ## Instance based learning
 ### KNN
-## Lazt vs Eager Learning
+## Lazy vs Eager Learning
 
-# Logisitic Regression 
+# 5. Logisitic Regression 
 ## Overview of Logistic Regression
 ## Generative vs Discrimitive Learning
 ## Linear Regression
@@ -139,7 +308,7 @@
 ## Regularisation
 ## Generalizing LR to Multiple Classes 
 
-# Hidden Markov Model
+# 6. Hidden Markov Model
 ## Overview of HMM
 ## Applications
 ## HMM definition
@@ -153,7 +322,7 @@
 ## Join Probability
 ## Viterbi Algorithm
 
-# Support Vector Machine
+# 7. Support Vector Machine
 ## Overview of SVM
 ## Linear Classifiers
 ## SVM 
@@ -176,7 +345,7 @@
 ## Pros and COns of the SVM Classifier
 
 
-# Clustering
+# 8. Clustering
 ## Overview of Clustering
 ## What is Cluster Analysis
 ## General Applications of Clustering
@@ -188,7 +357,7 @@
 ### Major Clustering Approaches
 
 
-# Spectral Clustering
+# 9. Spectral Clustering
 ## Overview of Spectral Clustering
 ## Quadratic Form
 ## Unnormalised Graph Laplacian
@@ -201,7 +370,7 @@
 ## Comments on Spectral Clustering
 
 
-# Association Rules
+# 10. Association Rules
 ## Overview of Association Rules
 ## What's Association Mining?
 ## Frequent Patterns and Association Rules
