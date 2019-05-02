@@ -220,7 +220,8 @@
 * Data cubes are modeled using dimensions and facts.
 * **Facts**: the subject it models. Facts are numerical measures. 
 * **Dimensions**: context of the measures
-* **Measures**: numbers that can be aggregated
+* **Measures**: numeric function that can be evaluated at each point in the data cube space.
+  * Distributive: affregate function that can be computed in a distributed manner as follows. 
 * **Hierarchies**: provides contexts of different granularities (aka. grains)
 * Goals for dimensional modeling:
   * Surround facts with as much relevant context (dimensions) as possible
@@ -235,22 +236,53 @@
   * Time
 ## Visualizing the Cubes
 * 2D view of sales data for a "AllElectronic" according to time and item.
-  - ![2-D view of sales](assets/dc-2d.png)
+  - ![2D view of sales](assets/dc-2d.png)
 * 3D view of sales data for a "AllElectronic" according to time, item & location.
-  - ![2-D view of sales](assets/dc-3d.png)
-## 3D Cube and Heirarchies
+  - ![3D view of sales](assets/dc-3d.png)
+## 3D Cube and Hierarchies
+- ![3D view of sales](assets/dc-3d-2.png)
+* **Concept Hierarchy**: defines a sequence of mappings from a set of low-level concepts to higher-level, more general concepts. 
+  - ![Concept Hierarchy](assets/concept-hierarchy.png)
 ## Cuboids
+- ![3D view of sales](assets/lattice-of-cuboids.png)
+* **Apex cuboid**  is the 0-D cuboid which holds the highest level of the summation. The apex cuboid is typicallly denoted by *all*. 
+* A complete cube of d-dimensions consists of the product of  (L_i+1), from i=1 to d, where L_i is the number of levels (not including ALL) on the i-th dimension.
+  * They collectively form the lattice.
+  * The **curse of dimenstionality** refers to the excessive storage requirements, each with multiple levels.
 ## Properties of Operations
+* All operations are closed under the multidimensional model (i.e. both input and output of an operation is a cube).
+* This means that they can be composed.
 ## OLAP Operations
-* **Roll-up**: 
-* **Drill-down**: 
-* **Slice and dice**: 
-* **Pivot (Rotate)**: 
-## Sice and Dice Queries
-## Pivoting
+* **Roll-up** (or drill-up): move up the hierarchy
+  * This operation usually aggregates data in the hierarchy hence reducing the dimensionality. 
+  * Eg. Hierarchy: street < city < state < country
+  * Roll-up operation shoes the aggregates by ascending the location hierarchy from the level of city to the level of country (ie. rather than grouping the data by city, the resulting cube groups the data by country)
+* **Drill-down**: move down the hierarchy
+  * Reverse of roll-up. Introduces more hierarchies.
+* **Slice and dice**: select and project one or more dimensional values
+  * Slice performas a selection on one dimension of the given cube resulting in a subcube.
+    * ![Slice](assets/OLAP_slicing.png)
+  * Dice defines a subcube by performing a selection on two or more dimensions.
+    * ![Dice](assets/OLAP_dicing.png)
+* **Pivot (Rotate)**: aggregate on selected dimensions
+  * Rotates the data aces in view to provide an alternative data presentation.
+    * ![Rotate](assets/OLAP_pivoting.png)
 ## Logical Models
-## Universal Schema - Star Schema
-## Snowflake Schema
+* Main approaches to represent these cubes using:
+  1. Relational DB Technology
+    * Start schema, snowflake schema, fact constellation  
+  2. Multidimensional Technology
+    * Just as multideminsional data cube
+### Star Schema
+* A fact table in the middle connected to a set of dimension tables
+* Each dimension is represented by only one table, and each table contains a set of attributes.
+  - ![Star Schema](assets/star.png)
+### Snowflake Schema
+* A refinement of star schema where some dimensional hierarchy is normalised into a set of smaller dimension tables, forming a shape similar to snowflake
+* 
+  - ![Snowflake Schema](assets/snowflake.png)
+### Fact constellation
+* Multiple fact tables share dimension tables, viewed as a collection of stars therefore called galaxy schema or fact constellation
 ## Query Language
 ## Physical Model + Query Processing Techniques
 ### ROLAP
