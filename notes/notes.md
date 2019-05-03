@@ -161,6 +161,7 @@
     * Data changes over time - no historical information
 ## Data Warehouse
 * Process of constructing and using data warehouses
+* **Data mart** subset of a data warehouse that's usually specific to particular business department. Data warehouses are made up of integrated data marts.
 * Is subject-oriented, integrated, time-variant and non-volatile collection of data in support of management's decision making process
 ### Subject Oriented
 * Provide a clear view around the particular subject
@@ -217,7 +218,7 @@
 ![DB VS DW](assets/db-vs-dw.png)
 ## The Multidimensional Model
 * Datawarehouse is based on a multidimensional data model which views data in the form of a **data cube**, which is a multidimensional generalisation of 2D spreadsheet
-* Data cubes are modeled using dimensions and facts.
+* **Data cubes** are modeled using dimensions and facts.
 * **Facts**: the subject it models. Facts are numerical measures. 
 * **Dimensions**: context of the measures
 * **Measures**: numeric function that can be evaluated at each point in the data cube space.
@@ -248,7 +249,11 @@
 * **Apex cuboid**  is the 0-D cuboid which holds the highest level of the summation. The apex cuboid is typicallly denoted by *all*. 
 * A complete cube of d-dimensions consists of the product of  (L_i+1), from i=1 to d, where L_i is the number of levels (not including ALL) on the i-th dimension.
   * They collectively form the lattice.
-  * The **curse of dimenstionality** refers to the excessive storage requirements, each with multiple levels.
+  * **Full materialisation** refers to the computation of all the cuboids in the lattice defining a data cube.
+    * Requires lots of storage space, especially when the dimensions increase.
+    * The **curse of dimenstionality** refers to the excessive storage requirements, each with multiple levels.
+  * **Partial materialisation** is where selective computation of a subset of the cuboids in the lattice. Ie. Isceberg cube is a data cube that stores only those cube cells that have an aggregate value (eg. count) about some minimum support theshold.
+
 ## Properties of Operations
 * All operations are closed under the multidimensional model (i.e. both input and output of an operation is a cube).
 * This means that they can be composed.
@@ -279,23 +284,102 @@
   - ![Star Schema](assets/star.png)
 ### Snowflake Schema
 * A refinement of star schema where some dimensional hierarchy is normalised into a set of smaller dimension tables, forming a shape similar to snowflake
-* 
   - ![Snowflake Schema](assets/snowflake.png)
 ### Fact constellation
 * Multiple fact tables share dimension tables, viewed as a collection of stars therefore called galaxy schema or fact constellation
+  - ![Fact constellation](assets/constellation.png)
 ## Query Language
-## Physical Model + Query Processing Techniques
+* Two approaches:
+  * Using DB tech: SQL (with extensions such as CUBE/PIVOT/UNPIVOT)
+  * Using multidimensional technology: MDX
+## Indexing OLAP Data: Bitmap Index and Join Index
+* Efficient data accessing -> build an index
+* **Bitmap indexing**: method used by OLAP servers to allow quick search in data cubes.
+  * In the bitmap index for a given attribute, there's a distinct bit vector (Bv) for each value of v in the attribute's domain. 
+  * Useful for low-cardinality domains becuse comparison, join and aggregation operations are reduced to bit arithmetic, thus reducing processing time.
+  * ![Bitmap Index Example](assets/bmindex.png)
+* **Join indexing**: register the joinable rows of two relations from a relational db.
+  * Eg. Given the two relations R(RID, A) and S(B, SID) join on the attributes A and B, then join the index record which contains the pair (RID,SID). The join index can identify joinable tuples without performing costly join operations.
+  * ![Join Index](assets/join-index.png)
+## OLAP Server Architectures
 ### ROLAP
+* Use relational DBMS to store and manage warehouse data and OLAP middleware to support missing pieves. ROLAP servers include optimisation for each DBMS back end, implementation of aggregate navigation logic and additional tools and services.
 ### MOLAP
+* Support multidimensional data views through array-based multidimensisional storage arrays.
+* Adopts a two-level storage representation to handle dense and sparse data sets. 
+* Advantage: allows fast indexing to precomputed summarized data.
 ### HOLAP
+* Hybring OLAP combines techniques used by ROLAP and MOLAP. 
+* Benefits from greater scalability of ROLAP and faster computation from MOLAP.
+  * Eg. Large volumes stored in ROLAP and aggregations kept in separate MOLAP store.
+## Physical Model + Query Processing Techniques
+* Issues
+  1. How to store the materialised cuboids?
+  2. How to compute the cuboids efficiently?
+### ROLAP
+#### Top-down Approach
+* Involdes computing an cube by traversing down a multi-dimnensional lattice formed from the attributes in an input table.
+* Begins by computing the frequent attribute value combinations for the attribute set at the top of the tree.
+![Top-down approach](assets/tdCTree.gif)
+### Botton-Up Computation (BUC) Approach
+* Resource: http://www2.cs.uregina.ca/~dbd/cs831/notes/dcubes/iceberg.html
+* The bottom-up computation algorithm (BUC) repeatedly sorts the database as necessary to allow convenient partitioning and counting of the combinations without lots of memory.
+* Divide and conquer approach to compute the cube from the bottom up,
+* Brief Algorithm:
+  1. Counts the frequencies of the first attribute in the input table
+  2. Partitions the database based on the frequent values of the first attribute, so tuples with frequent value for the first attribute are further examined
+  3. Counts the combinations of values for the first two attributes and partions the database so that tuples that contain frequent combinaton of the first two attributes are further processed.
+  4. Repeat for all attributes of the table
+* ![BUC Tree](assets/BUCTree.gif)
+### MOLAP
+* Sparce array-based multidimensional storage engine
+* Pros
+  * Small size (good for dense cubes)
+  * Fast indexing and query processing
+* Cons
+  * Scalability
+  * Conversion from relation data 
+* We use an injective mapping function (no same input maps to the same output) from cell to offset
+* Example:
+  * ![Example MOLAP Table](assets/molap-s0.png)
+  1. Create mapping tables
+     * ![Step 1 MOLAP Table](assets/molap-s1.png)
+  2. An injective map from cell to offset
+     * f(time,item) = 4time + item
+     * ![Step 2 MOLAP Table](assets/molap-s2.png)
+* Typically the multidimensional array is sparce, after sorting the final values according to the offset
+  * Only need to store sorted slots, no need to store the offset.
+### HOLAP
+* Store all non-base cuboid in MD array
+* Assign a value for ALL
 
 
 # 3. Preprocessing 
 ## Overview of Preprocessing
+## Why Preprocess
+* Data can be dirty
+  * **Incomplete**: attributes left blank
+  * **Noisy**: containing outliers 
+  * **Inconsistent**:  conmtaining discrepanies in data format
+* Caused by when data is being collected
+  * Different data sources
+  * Human error
+  * Software/hardware issues
+* Why is it important?
+  * Data mining quality depends on the quality of the dataset.
+* Preprocessing is a critical step for data mining and makes up a majority of the work
 ## Major Tasks
-## Noisy Data
+* **Data Cleaning**: Filling in missing values, smoothing noisy data, identify or remove outliers and resolve inconsistencies
+* **Data Integration**: Integration og multiple databases, data cubes or files 
+* **Data Transformation**: Normalisation and aggregation 
+* **Data Reduction**: Obtains reduced represention in volume but produces similar analytical results
+* **Data Discretization & Data Type Conversion**
+## Data Cleaning
+
+### Missing Data
+### Noisy Data
 ## Data Integration
-## Handling Redundancy in Data Integration
+### Handling Redundancy in Data Integration
 ## Data Transformation
 ## Data Reduction
 ### Dimensionality Reduction
@@ -304,7 +388,7 @@
 ### Discretization and Concept Hierarchy Generation
 
 
-# 4. Classification
+# 4. Classification & Prediction
 ## Overview of Classification
 ## Classification vs Prediction
 ## Classification and Regression
