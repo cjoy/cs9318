@@ -560,6 +560,16 @@
        3. Fit a model on the training set and evaluate it on the test set
        4. Retain the evaluation score and discard the model
   4. Summarize the skill of the model using the sample of model evaluation scores
+## Classification Techniques for Large Databases
+* Scalability: Ability to classifying datasets with millions of training data and hundreds of features with reasonable speed
+* Reasons for decision trees
+  * Relatively fast learning
+  * Easy to understand classification rules
+  * Can use SQL queries when constructing
+* Dimensionality Reduction
+  * Binning
+  * Discretisation
+  * Feature engineering
 
 ## Decision Tree Classifier
 * Supervised Learning Algorithm
@@ -614,17 +624,52 @@
 * Use a separate validation set
 * Use minimum description length (MDL) principle
   * Halt growth of the tree when the encoding is minimized
-* 
 ### Pessimistic Post-pruning
+* TODO 
 
 ## Bayesian Classification
+* **Probabilistic Learning**: Grounded in probability theory, easy to replicate
+* **Incremental**: Each training example can incrementally increase and decrease the porbability that a hypothesis is correct.
+  * This makes it ideal for online learning as more training data can be added indirectly so the model "learns" dynamically
+* **Probabilistic Prediction**: Predict multiple multiple hypothesis, weighted by their probabilities
+* Generative model
 ### Bayes Theorem
+* Let `X` be a data sample whose class label is unknown.
+* Let `h` be a hypothesis that `X` belongs to class `C`.
+* For classifications problems, we need to determine
+  * `P(h|X)` ~ probability of hypthosis given the observed data X.
+* `P(h)`: prior probability of hypothesis `h`  (ie. probability of the class within the entire dataset)
+* `P(X)`: probability that sample is observed
+* `P(X|h)`: probability of observing the sample `X`, given the hypothesis holds.
+* Given training data X, posteriori probability of hypothesis `h`, `P(h|X)` follows the Bayes theorem
+  * ![Bayes Theorem](assets/bayes_1.png)
+  * ie. posterior = (likelihood x prior) / evidence
+* MAP (maximum posterior hypothesis) 
+  * ![MAP](assets/map.png)
+  * Difficuilt to copute, requires knowledge of too many probabilities
+  * ie. Need to compute the probability of all classes given the input.
 ### Naive Bayes Classifier
+![NB Classifier](assets/nb.png)
 ### Smoothing
+* Need to deal with zero probabilities
+![NB Classifier Smoothing](assets/smoothing.png)
+### Handling Numeric Values
+* Use binning to discretize values
 ### Text Classification
+* Methods
+  * Statistical language model
+    * Bag of words if using unigram models
+    * multinomial NB
+  * View a text as a set of token -> Boolean vector
+    * Bernoulli NB
+* Mulitnomial NB 
+  * ![MNB](assets/mnb-1.png)
+  * ![MNB 2](assets/mnb-2.png)
+  * ![Underflow prevention](assets/mnb-3.png)
 
 ## Logistic Regression
 ### Generative vs Discrimitive Learning
+* ![Generative vs Discriminative](assets/gen-v-disc.jpg)
 ### Linear Regression
 ### Least Square Fit
 ### Minimizing a Function
