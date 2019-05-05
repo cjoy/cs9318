@@ -468,12 +468,12 @@
   * Divides the range into N intervals, each containing approximately same number of samples
   * Good data scaling
   * Managing categorical attributes can be ticky
-* Optimial Binning Problem
+* **Optimial Binning Problem**
   * Cost(bin) = SSE([x_1,...,x_k]) = sum_{i..m}(x_i - E(x_i))^2
   * Cost of B bins = sum(cost(bin_1),...,cost(bin_b))
   * Problem: find the B-1 bin boundaries such that the cost of the resulting bins is minimized.
   * Solve in O(B*n^2)~time & O(n^2) space
-* MaxDiff: Solve the problem in O(nlogn) time and O(n) space (dynamic programming algo)
+* **MaxDiff**: Solve the problem in O(nlogn) time and O(n) space (dynamic programming algo)
   * Use the top-(B-1) max gaps in the data as the bin/bucket boundary
 ### Histogram Analysis
 * Partitions the values of an attribute, A, into disjoint ranges called buckets or bins
@@ -497,11 +497,11 @@
 * **Clustering**  (unsupervised)
   * Used to generate class labels by grouping data points
 ## Supervised vs Unsupervised Learning
-* Supervised Learning
+* **Supervised Learning**
   * Supervision: The training data (observations, measurementsm etc) are accompanied by labels indicating the class of the observations.
   * New data is classified based on the training set
   * Includes classification
-* Unsupervised learning
+* **Unsupervised learning**
   * The class labels of training data is unknown.
   * Given a set of measurements, observations, etc. with the aim of establishing the existence of classes or clusters in the data
   * Includes clustering
@@ -521,7 +521,7 @@
   * Dev Set: Used to tune model's hyperparamters
 ## Lazy vs Eager Learning
 * Lazy Learning
-  * Just store training data without learning it
+  * Just store training data without learning it (ie. just stores not processing)
   * Start classifying when it recieves test data
   * Less time training, but more time evaluating
   * Includes kNN, Case-based reasoning
@@ -536,18 +536,86 @@
 * Nearest neighbor are defined in terms of euclidean distance.
 * Target function could be discrete or real-valued.
 * For discrete-valued, the k-NN returns the most common value among the k training examples nearest the input.
-* 
-## Classification and Regression
 ## Two Step Process
-1. Learning
-2. Classification
-## Overfitting in Classification
+### Model Construction (ie. Learning)
+* Describing a set of predetermined classes
+* Each tuple/sample is assumed to belong to a predefined class as determined by the class label attribute
+* The set of tuples used for model construction is the training set
+* The model is represented as classification rules, decision trees or mathematical formulae
+### Model Usage (ie. classification)
+* Classifying unknown objects
+* Estimate accuracy of the model
+  * Accuracy rate is the percentage of test set samples that are correctly classified by the model
+  * Test set is independent of training set, otherwise over-fitting will occur
+  * If the accuracy is acceptable, use the model to classify data tuples whose class labels are unknown.
+## Evaluating a model
+* Training Error:  We get this by calculating the classification error of a model on the same data the model was trained on (just like the example above).
+* Testing Error:  We get this by using two completely disjoint datasets: one to train the model and the other to calculate the classification error. Both datasets need to have values for y. The first dataset is called training data and the second, test data.
+* K-fold cross validation: 
+  1. Shuffle the dataset randomly.
+  2. Split the dataset into k groups
+  3. For each unique group:
+       1. Take the group as a hold out or test data set
+       2. Take the remaining groups as a training data set
+       3. Fit a model on the training set and evaluate it on the test set
+       4. Retain the evaluation score and discard the model
+  4. Summarize the skill of the model using the sample of model evaluation scores
 
 ## Decision Tree Classifier
-## ID3 Algoritrm
-## DT Pruning Methods
-## Pessimistic Post-pruning
-## Classification in Large Databases
+* Supervised Learning Algorithm
+* Each node represents an attribute
+* Each link represents a decision (ie. attribute value)
+* Leaf nodes represent the class attribute (ie. the label)
+* Two common algorithms developed around the same time
+  1. ID3, uses
+    * Entropy Function
+    * Information Gain
+  2. CART
+    * Gini Index
+### Decision Tree Example
+* ![DTree Training Example](assets/dt_example.png)
+* ![DTree Output Example](assets/dt_output.png)
+### Extracting Classification Rules
+* Represent the knowledge in the form of IF-THEN rules
+  * Rules are easier for humans to understand
+* One rule is created for each path from the root to a leaf 
+  * Each attribute-value pair along a path forms a conjunction
+  * The leaf node holds the class prediction
+  * ![DT Rules](assets/dt_rules.png)
+### ID3 (Iterative Dischotomiser) Algoritrm
+* Requirements
+  * ![ID3 Requirements](assets/id3_1.png)
+* Psuedocode
+  * ![ID3 Psuedocode](assets/id3_2.png)
+### The CART Algorithm (with gini index)
+* TODO
+* CART = Classification and Regression Tree
+* Gini Index
+  * All attribute are assumed to be continuous
+  * Assumed there exists several possible split values for each attribute
+  * May need other tools such as clustering to get the possible split values
+  * Can be modified for categorical attributes
+* Induces binary split => binary decision trees
+* Attribute with the smallest gini is chosen as the split node
+* ![Gini Index](assets/gini.png)
+### Overfitting/Underfitting
+* Overfitting in decision trees occur when there are too many branches and some may reflect anomalies due to noise or outliers
+* Poor accuracy for unseen samples
+* Overfitting: model too complex -> training error keeps decreasing, but testing errror increases
+* Underfitting: model too simple -> both training and testing has lots of errors.
+* Fixes for overfitting (Pruning)
+  * **Prepruning**: Halt tree construction early - do not split a node if this would result in the goodness measure falling below a threshold.
+    * Difficult to choosee an appropriate threshold
+  * **Postpruning**: Remove branches from fully grown tree
+    * Use a set of data different from the training data to decide which is the best pruned tree.
+* ![Overfitting Example 1](assets/overfit_1.png)
+* ![Overfitting Example 2](assets/overfit_2.png)
+### DT Pruning Methods
+* Use a separate validation set
+* Use minimum description length (MDL) principle
+  * Halt growth of the tree when the encoding is minimized
+* 
+### Pessimistic Post-pruning
 
 ## Bayesian Classification
 ### Bayes Theorem
@@ -602,7 +670,7 @@
 ## Generative Process
 ## 3 Problems
 ## Application - Typed Words
-## Csting into Evaluation Problem
+## Casting into Evaluation Problem
 ## Decoding Problem
 ## Join Probability
 ## Viterbi Algorithm
@@ -629,17 +697,15 @@
 ### Comments on Spectral Clustering
 
 
-# 7. Association Rules
+# 7. Association Rule Mining
 ## Overview of Association Rules
 ## What's Association Mining?
 ## Frequent Patterns and Association Rules
 ## Mining Association Rules
 ## Association Rule Mining Algorithms
-## Apriori Property
-## The Apriori Algorithm
 ## Generating Candidates in SQL
 ## Derive rules
 ## Bottleneck of Frequent-pattern Mining
 ## Notations and Invariants
 ## FP-tree
-## FP Growth vs Apriori
+## FP Growth
