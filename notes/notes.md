@@ -650,6 +650,8 @@
   * ie. Need to compute the probability of all classes given the input.
 ### Naive Bayes Classifier
 ![NB Classifier](assets/nb.png)
+* Classifier:
+  * ![NB Classifier](assets/nbc.svg)
 ### Smoothing
 * Need to deal with zero probabilities
 ![NB Classifier Smoothing](assets/smoothing.png)
@@ -750,7 +752,6 @@
 
 
 # 7. Association Rule Mining
-## Overview of Association Rules
 ## What's Association Mining?
 * Finding frequent patterns, associations, correlations etc in itemsets of transaction databases.
 * Applications:
