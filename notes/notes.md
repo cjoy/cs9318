@@ -664,11 +664,13 @@
     * multinomial NB
   * View a text as a set of token -> Boolean vector
     * Bernoulli NB
-* Mulitnomial NB 
+#### Mulitnomial NB 
+  * TODO
   * ![MNB](assets/mnb-1.png)
   * ![MNB 2](assets/mnb-2.png)
   * ![Underflow prevention](assets/mnb-3.png)
-* Multivariante Bernoulli
+#### Multivariante Bernoulli
+  * TODO
   * Used in the binary independence model in classic probabilistic relevance feedback in hand-classified data.
 ### Naive Bayesian Classifier Commends
 * Conditional independence, therefore loss of accuracy
@@ -780,6 +782,8 @@
 * A frequent itemset is an itemset whose support is greater than the minimum support
 * **Apriori property**: any subsets of a frequent itemset are also frequent itemsets
   * Set theory: **Anti-monotone** proporty of support -> Anny supersets of an infrequent itemset are also infrequent itemsets.
+## Apriori Algorithm
+* TODO
 ## FP (Frequent Pattern) Growth Algorithm
 * Divide and conqure algorithm.
 * No candidate generation - like with apriori algorithm
