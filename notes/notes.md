@@ -666,6 +666,13 @@
   * ![MNB](assets/mnb-1.png)
   * ![MNB 2](assets/mnb-2.png)
   * ![Underflow prevention](assets/mnb-3.png)
+* Multivariante Bernoulli
+  * Used in the binary independence model in classic probabilistic relevance feedback in hand-classified data.
+### Naive Bayesian Classifier Commends
+* Conditional independence, therefore loss of accuracy
+* Easy to implement
+* Good results in most cases
+
 
 ## Logistic Regression
 ### Generative vs Discrimitive Learning
@@ -745,12 +752,34 @@
 # 7. Association Rule Mining
 ## Overview of Association Rules
 ## What's Association Mining?
-## Frequent Patterns and Association Rules
+* Finding frequent patterns, associations, correlations etc in itemsets of transaction databases.
+* Applications:
+  * Shopping basket analysis
+  * Classifying web documents
+## Basic Concepts
+* **Frequent pattern**: Pattern of itemsets that occur frequently in a database.
+* Itemset `X = {x1, x2, ..., xk}` is called k-itemset
+* Find all rules with minimum support and confidence for `A -> B`
+* **Support**: 
+  * `Supp(A -> B) = P(A ∪ B) = Support(A ∪ B) / N`
+  * where `N` is the total number of transactions.
+* **Confidence**: 
+  * `Conf(A -> B) = P(B | A) = Support(A ∪ B) / Support(A)`
+* If association rule meets the minimum support and confidence, we can say it's **strong**.
 ## Mining Association Rules
+* ![Example](assets/assos_mining.png)
 ## Association Rule Mining Algorithms
+* Naive algorithm
+  * Enumerate all possible itemsets and check their support again minimum support.
+  * Do the same for minimum confidence.
+  * This is a bruteforce approach, where we need to generate a lot of canditates
+  * `Number of Rules = 3^d + 2^(d+1) + 1` ~ Too many rules!!
+* Apriori property
+  * FP-growth Algorithm is more efficent
+## FP (Frequent Pattern) Growth Algorithm
+* Divide and conqure algorithm.
 ## Generating Candidates in SQL
+
 ## Derive rules
 ## Bottleneck of Frequent-pattern Mining
 ## Notations and Invariants
-## FP-tree
-## FP Growth
