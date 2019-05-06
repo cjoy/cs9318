@@ -797,6 +797,9 @@
   * Stage 2 - Frequent patterns and Association Rules
       1. Using the `Item` and `Conditional FP-tree` list generated above add the `Frequent patterns` column.
       2. We can now use the frequent patterns list to generate the association rules and filter based on the `min_conf`.
+## FP Growth Algorithm Example
+![FP Growth Example 1](assets/fp1.jpg)
+![FP Growth Example 1](assets/fp2.jpg)
 ## Derive rules from frequent itemsets
 * Frequent itemsets is NOT the association rules
 * For each frequent itemset `X`,
