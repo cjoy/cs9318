@@ -774,12 +774,33 @@
   * Do the same for minimum confidence.
   * This is a bruteforce approach, where we need to generate a lot of canditates
   * `Number of Rules = 3^d + 2^(d+1) + 1` ~ Too many rules!!
-* Apriori property
-  * FP-growth Algorithm is more efficent
+* FP-growth Algorithm is more efficent
+## Apriori property
+* A frequent itemset is an itemset whose support is greater than the minimum support
+* **Apriori property**: any subsets of a frequent itemset are also frequent itemsets
+  * Set theory: **Anti-monotone** proporty of support -> Anny supersets of an infrequent itemset are also infrequent itemsets.
 ## FP (Frequent Pattern) Growth Algorithm
 * Divide and conqure algorithm.
-## Generating Candidates in SQL
-
-## Derive rules
-## Bottleneck of Frequent-pattern Mining
-## Notations and Invariants
+* No candidate generation - like with apriori algorithm
+* Constructs  a compressed database: FP-tree structure
+* No need to constantly search for patterns in DB.
+* Algorithm steps:
+  * Stage 1 - Construct the FP-tree
+      1. Generate a 1-itemset list, with corresponding support
+         * Delete items who don't meet the minimum support.
+         * Sort by descending support count
+      2. Reorder itemset based on the ordered 1-itemset.
+      3. Construct FP-Tree using table (Item, Support Count, Node Link)
+      4. Reverse the 1-itemset list and write out the `Conditional Pattern Base` (using the FP-Tree constructed above)
+         * Conditional pattern base is just the paths to each item
+      5. Add the `Conditional FP-Tree`, which is just the common items from the conditional pattern base. 
+  * Stage 2 - Frequent patterns and Association Rules
+      1. Using the `Item` and `Conditional FP-tree` list generated above add the `Frequent patterns` column.
+      2. We can now use the frequent patterns list to generate the association rules and filter based on the `min_conf`.
+## Derive rules from frequent itemsets
+* Frequent itemsets is NOT the association rules
+* For each frequent itemset `X`,
+* For each non-empty subset of `A` of `X`
+    * Let `B = X - A`
+    * `A -> B` is an association rule if the confidence is greater than `min_conf`
+        * ie. `Support(AB)/Support(A) >= min_conf`
