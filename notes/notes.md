@@ -676,8 +676,6 @@
 * Conditional independence, therefore loss of accuracy
 * Easy to implement
 * Good results in most cases
-
-
 ## Logistic Regression
 ### Generative vs Discrimitive Learning
 * ![Generative vs Discriminative](assets/gen-v-disc.jpg)
@@ -694,7 +692,6 @@
 ### Newton's Method
 ### Regularisation
 ### Generalizing LR to Multiple Classes 
-
 ## Support Vector Machine
 ### Overview of SVM
 ### Linear Classifiers
@@ -733,24 +730,48 @@
 
 # 6. Clustering
 ## What is Cluster Analysis
+* **Cluster**: a collection of data objects
+  * Similar objects belong to the same cluster
+  * Different objects belong to different clusters
+* **Unsupervised classification**: No predefined classes.
 ## General Applications of Clustering
-## Examples of Clustering Applications
-## What is Good Clustering
-## Requirements of Clustering in DM
-## Cluster Analysis
-### Types of Data in CA
-### Major Clustering Approaches
-## Spectral Clustering
-### Overview of Spectral Clustering
-### Quadratic Form
-### Unnormalised Graph Laplacian
-### Binary x induces a Clustering
-### Min Cut vs Normalized Cut
-### Connection to L
-### Relaxation and Optimization 
-### Spectural Clustering Algorithm Framework
-### Notes on the Algorithm
-### Comments on Spectral Clustering
+* Pattern recognition
+* Spatial data analysis
+* Image processing
+* Economic science
+* Document classification etc
+## Clustering Criteria
+* What is Good Clustering?
+  * High **intra-class** similarity 
+  * Low **inter-class** similarity
+  * The quality of a clustering result depends on the **similarity measure** used by the method and its implementation.
+  * Quality is measured by its ability to discover some or all the hidden patterns.
+## Distance / Similarity
+* Distances are normally used to measure the similarity or dissimilarity between two data objects
+* 
+### Dealing with different types of variables
+### Distance Functions
+### Metric Distance Functions
+* Properties
+  * **Symmetry**: d(i,j) >= 0 
+  * **Constancy of Self-similarity**: d(i,i) = 0
+  * d(i, j) = d(j,i)
+## Partition-Based Methods
+### k-Means 
+#### Algorithm
+#### Example
+#### Pros & Cons
+
+## Heirarchical Methods
+### Agglomerative
+### Single-link
+### Complete-link
+### Group Average Hierarchical Clustering
+
+## Graph-based Methods
+### Unnormalized Graph Laplacian
+### Spectral Clustering Algorithm
+### Embedding
 
 
 # 7. Association Rule Mining
@@ -782,8 +803,13 @@
 * A frequent itemset is an itemset whose support is greater than the minimum support
 * **Apriori property**: any subsets of a frequent itemset are also frequent itemsets
   * Set theory: **Anti-monotone** proporty of support -> Anny supersets of an infrequent itemset are also infrequent itemsets.
+* **Apriori pruning principles**: Any itemset which is infrequent, its superset should not be generated/tested.
 ## Apriori Algorithm
-* TODO
+* Perform level-wise candidate generation (ie. Ci)
+  * Prune out canditates with a confidence lower than the minimum support.
+  * Repeat the above with the remaining candidates
+* Using the final candidates, generate association rules.
+* ![Apriori Example](assets/apriori.png)
 ## FP (Frequent Pattern) Growth Algorithm
 * Divide and conqure algorithm.
 * No candidate generation - like with apriori algorithm
