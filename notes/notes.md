@@ -1,6 +1,6 @@
 # 1. Introduction to Data Warehousing and Data Mining
 ## Overview of Introduction 
-* Data mining: discovering interesting patterns from large amounts of data
+* **Data mining**: discovering interesting patterns from large amounts of data
 * Natural evolution of db technology
 * KDD process involved data cleaning, data integration, data selection, transformation, data mining, pattern evaluation and knowledge presentation
 * Data mining functionalities: characterisation, discrimination, association, classification, clustering, outlier and trend analysis
@@ -676,6 +676,7 @@
 * Conditional independence, therefore loss of accuracy
 * Easy to implement
 * Good results in most cases
+
 ## Logistic Regression
 ### Generative vs Discrimitive Learning
 * ![Generative vs Discriminative](assets/gen-v-disc.jpg)
@@ -692,6 +693,7 @@
 ### Newton's Method
 ### Regularisation
 ### Generalizing LR to Multiple Classes 
+
 ## Support Vector Machine
 ### Overview of SVM
 ### Linear Classifiers
@@ -730,16 +732,17 @@
 
 # 6. Clustering
 ## What is Cluster Analysis
+* **Clustering** is the process of partitioning a set of data objects into groups (ie. *clusters*).  
+  * **Unsupervised classification** (ie. no predefined classes, rather we come up with these classes).
 * **Cluster**: a collection of data objects
   * Similar objects belong to the same cluster
   * Different objects belong to different clusters
-* **Unsupervised classification**: No predefined classes.
 ## General Applications of Clustering
-* Pattern recognition
-* Spatial data analysis
-* Image processing
-* Economic science
-* Document classification etc
+* Pattern Recognition
+* Spatial Data Analysis
+* Image Processing
+* Economic Science
+* Information Retrieval
 ## Clustering Criteria
 * What is Good Clustering?
   * High **intra-class** similarity 
@@ -748,16 +751,37 @@
   * Quality is measured by its ability to discover some or all the hidden patterns.
 ## Distance / Similarity
 * Distances are normally used to measure the similarity or dissimilarity between two data objects
-* 
-### Dealing with different types of variables
+* Similarity relations
+  * `0 <= S(a,b) <= 1`
+  * `S(a,a) = 1`
+  * `S(a,b) = S(b,a)`
+* Dissimilarity can be defined as `D(a, b) = 1 - S(a,b)`
+### Types of Data
+* Distance functions are different for each type of variable.
+* Weights should be applied to differnet variables. 
+* Interval-Scaled Variables
+  * 
+* Binary Variables
+* Nominal, Ordinal and Ratio Variables
 ### Distance Functions
-### Metric Distance Functions
-* Properties
-  * **Symmetry**: d(i,j) >= 0 
-  * **Constancy of Self-similarity**: d(i,i) = 0
-  * d(i, j) = d(j,i)
+* The minkowski distance is a popular choice for distance measure.
+  * ![Minkowski](assets/minkowski.png)
+  * **Manhattan** distance when `p=1`  
+  * **Euclidian** distance when `p=2` 
+  * ![Manhattan vs Euclidian](assets/mve.jpg)
+    * Euclidian is just `X`, where as the manhattan distance is the two blue lines. 
+* Properties of distance measures
+  * `d(a, a) = 0` ~ Symmetry
+  * `d(a, b) >= 0` ~ Positiveness
+  * `d(a, b) = d(b, a)` ~ Reflexivity
+  * `d(a, b) <= d(a, c) + d(c, b)` ~ Triangle Inequality
 ## Partition-Based Methods
-### k-Means 
+* Produce a set of nester clustered organised as a hierarchical tree.
+* **Dendrogram** is commonly used to represent hierarchical clusters.
+  * A tree like diagram that records the sequence of merges/splits
+  * A clustering of the data objects is obtained by cutting the dendrogram at the desired level and each connected component is a cluster 
+  * ![Dendrogram Example](assets/dendrogram.png)
+### k-Means
 #### Algorithm
 #### Example
 #### Pros & Cons
