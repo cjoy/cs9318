@@ -760,9 +760,12 @@
 * Distance functions are different for each type of variable.
 * Weights should be applied to differnet variables. 
 * Interval-Scaled Variables
-  * 
+  * TODO
 * Binary Variables
+  * Given two binary vectors `X` and `Y`
+  * Jaccard coefficient: `d(X, Y) = sum(min(Xi, Yi))/sum(max(Xi, Yi))`
 * Nominal, Ordinal and Ratio Variables
+  * TODO
 ### Distance Functions
 * The minkowski distance is a popular choice for distance measure.
   * ![Minkowski](assets/minkowski.png)
@@ -776,18 +779,52 @@
   * `d(a, b) = d(b, a)` ~ Reflexivity
   * `d(a, b) <= d(a, c) + d(c, b)` ~ Triangle Inequality
 ## Partition-Based Methods
+* Construct a good partition of n objects into a set of k clusters
+* Cost of a cluster:
+  * Euclidian distance from the cetroid to each point.
+### k-Means
+* Instance of the expectation maximisation algorithm.
+* Attributes HAVE to be numeric
+  * ie. Can't be categorical or ordinal
+#### Algorithm (Lloyds)
+* Input: K, set of centroids
+* Place centroids c1, ..., ck at random locations
+* Repeat until convergence:
+  * for each point xi:
+    * find the nearest centroid cj: `argmin D(xi, cj)`
+    * assign the point `xi` to cluster `j`
+  * for each cluster `j = 1 ... k`
+    * new centroid `cj` = mean of all points `xi` assigned to cluster `j` in previous step 
+* stopping condition: no cluster assignments changes
+#### Example
+![kmeans](assets/kmeans.png)
+  * [Youtube Video](https://www.youtube.com/watch?v=_aWzGGNrcic)
+#### Pros & Cons
+* Pros
+  * Relatively efficient
+    * O(tkn) when n is number of objects, k is number of cluster and t is number of iterations.
+* Weakness
+  * Can't work with categorical data
+  * Need to specify k, the number of clusters in advance
+  * Unable to handle noisy data and outliers
+
+## Heirarchical Methods
 * Produce a set of nester clustered organised as a hierarchical tree.
 * **Dendrogram** is commonly used to represent hierarchical clusters.
   * A tree like diagram that records the sequence of merges/splits
   * A clustering of the data objects is obtained by cutting the dendrogram at the desired level and each connected component is a cluster 
   * ![Dendrogram Example](assets/dendrogram.png)
-### k-Means
-#### Algorithm
-#### Example
-#### Pros & Cons
-
-## Heirarchical Methods
-### Agglomerative
+* Doesn't assume any number of clusters
+  * Any number of clusters can be formed by cutting on a particular distance.
+* Types of heirarchical clustering
+    1. Agglomerative
+       * Start with the points as individual clusters
+       * At each step, *merge the closest pair of clusters* until only one cluster (or k clusters) left.
+    2. Divisive
+       * Start with one, all-inclusive cluster
+       * At each step, split a cluster until each cluster contains a point
+* Use a similarity/distance matrix
+  * Merge or split one cluster at a time
 ### Single-link
 ### Complete-link
 ### Group Average Hierarchical Clustering
