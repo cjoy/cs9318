@@ -21,11 +21,11 @@
   * Risk analysis and management
     * Forecasting, customer retention, improved underwriting, quality control and competitive analysis
 * Other Applications
-  * Text miining (ie. reddit, email) ~ Web mining for sentiment analysis etc
+  * Text mining (ie. reddit, email) ~ Web mining for sentiment analysis etc
   * Stream data mining (ie. twitter, live flow of information that's constantly incoming)
 # Market Analysis and Management
 * Where do we get this data from?
-  * Cred card transation
+  * Credit card transations
   * Loyality cards
   * Discount coupons
   * Customer complaint calls
@@ -38,11 +38,11 @@
 * Customer profiling
   * What types of customer buy what products (clustering or classification)
 * Customer requirement analysis
-  * Identifying the best products for different cusotmers
+  * Identifying the best products for different customers
   * Predict what factors will attract new customers
 * Provision of summary information
   * Multidimensional summary reports
-  * Statistical summary infomation
+  * Statistical summary information
 ## Knowledge Discovery Process
 ![KDD Process](assets/kdd.png)
 * Learning the application domain
@@ -146,7 +146,6 @@
 
 
 # 2. Data Warehouse and OLAP
-## Overview of Data Warehouse and OLAP
 ## Data Analysis Problems
 * Redundant data found across departments
 * Hetergeneous sources
@@ -695,7 +694,6 @@
 ### Generalizing LR to Multiple Classes 
 
 ## Support Vector Machine
-### Overview of SVM
 ### Linear Classifiers
 ### SVM 
 ### Maximum Margin: Formalization
@@ -826,7 +824,9 @@
 * Use a similarity/distance matrix
   * Merge or split one cluster at a time
 ### Single-link
+* Min distance
 ### Complete-link
+* Max distance
 ### Group Average Hierarchical Clustering
 
 ## Graph-based Methods
