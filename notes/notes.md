@@ -529,6 +529,10 @@
   * When it recieves training data it starts classifying (ie. learning)
   * More time learning, but less time evaluating
   * Includes decision-tree and bayesian classification
+## Generative vs Discrimitive Learning
+* ![Generative vs Discriminative](assets/gen-v-disc.jpg)
+* Naive Bayes is generative.
+* Logistic regression is discriminative.
 ## Instance based learning
 * Storing training examples and delay the processing until a new instance must be classified.
 ### KNN
@@ -578,10 +582,10 @@
 * Leaf nodes represent the class attribute (ie. the label)
 * Two common algorithms developed around the same time
   1. ID3, uses
-    * Entropy Function
-    * Information Gain
+       * Entropy Function
+       * Information Gain
   2. CART
-    * Gini Index
+       * Gini Index
 ### Decision Tree Example
 * ![DTree Training Example](assets/dt_example.png)
 * ![DTree Output Example](assets/dt_output.png)
@@ -667,6 +671,8 @@
     * multinomial NB
   * View a text as a set of token -> Boolean vector
     * Bernoulli NB
+* Why we can't apply NB directly?
+  * Text of varying length is not a fixed dimensional vector.
 #### Mulitnomial NB 
   * ![MNB 2](assets/mnb-2.png)
   * ![MNB 4](assets/mnb-4.png)
@@ -680,6 +686,10 @@
 * Class conditional unigram
 * Xi is the position of the word in the document
   * Feature values are all words in dictionary
+* [Worked Example](https://www.youtube.com/watch?v=OWGVQfuvNMk)
+  ![Worked example](assets/mvnb-we.png)
+    * P(Class|X) = P(Class) * (P(Xi|C) * ... * P(Xn|C)) 
+    * Use decision rule to choose class with the highest probability
 #### Multivariant Bernoulli Naive Bayes
 * One feature `Xw` for each word in dictionary
 * `Xw` is true in document `d` if `w` appears in `d`
@@ -693,21 +703,23 @@
 * Good results in most cases
 
 ## Logistic Regression
-### Generative vs Discrimitive Learning
-* ![Generative vs Discriminative](assets/gen-v-disc.jpg)
-### Linear Regression
-### Least Square Fit
-### Minimizing a Function
-### Least Fit Square for LR
-### Probabilistic Interpretation
-### Logistic Regression
-### Learning W
-### Understanding the Equilibrium
-### Numeric Solution
-### Gradient Ascent
-### Newton's Method
-### Regularisation
-### Generalizing LR to Multiple Classes 
+* [Andrew Ng's Notes](http://cs229.stanford.edu/notes/cs229-notes1.pdf)
+* Similar to linear regression, but used to predict binary classes (not continuous data)
+  * MaxEnt => Logistic Regression generalised to multiple classses.
+* Solve for p
+* ![Sigmoid Function](assets/sigmoid.png)
+* Decision boundary is when p >= 0.5
+#### Learning w (Gradient Ascend)
+  * ![Learning w](assets/lr-learning.png)
+#### Regularisation
+* Dealing with overfitting
+  * Penalise large values of model parameters
+  * Encourages simpler models less likely to overfit
+* Instead of optimizing for l(w). we optimise for l(w) + sR(w)
+  * s is a hyperparameter that controls the strength of the regularisation
+* R(w) quantifies the size of the model parameters
+  * L2 regularisation (Ridge LR) R(w) = ||w||2
+  * L1 regularisation (Lasso LR) R(w) = ||w||1
 
 ## Support Vector Machine
 * [Good lecture](https://www.youtube.com/watch?time_continue=1878&v=_PwhiWxHK8o)
