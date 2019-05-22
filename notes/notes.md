@@ -652,6 +652,9 @@
 ![NB Classifier](assets/nb.png)
 * Classifier:
   * ![NB Classifier](assets/nbc.svg)
+    * `K`: number of classes
+    * `C`: set of classes
+    * `n`: number of dimensions in the feature vector
 ### Smoothing
 * Need to deal with zero probabilities
 ![NB Classifier Smoothing](assets/smoothing.png)
