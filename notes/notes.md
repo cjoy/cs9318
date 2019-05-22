@@ -668,14 +668,25 @@
   * View a text as a set of token -> Boolean vector
     * Bernoulli NB
 #### Mulitnomial NB 
-  * TODO
   * ![MNB 2](assets/mnb-2.png)
   * ![MNB 4](assets/mnb-4.png)
   * ![MNB 5](assets/mnb-5.png)
   * ![Underflow prevention](assets/mnb-3.png)
-#### Multivariante Bernoulli
-  * TODO
-  * Used in the binary independence model in classic probabilistic relevance feedback in hand-classified data.
+### Multivariant Bernoulli
+  * ![MBNB example](assets/bern-nb.png)
+### Multinomial vs Multivariant Bernoulli Naive Bayes
+![Parameter Estimation](assets/nb-pm.png)
+#### Multinomial Naive Bayes
+* Class conditional unigram
+* Xi is the position of the word in the document
+  * Feature values are all words in dictionary
+#### Multivariant Bernoulli Naive Bayes
+* One feature `Xw` for each word in dictionary
+* `Xw` is true in document `d` if `w` appears in `d`
+#### General Commons
+* Multinomial model is more effective in text applications!
+* Feature selection (dictionary truncation) is required for Multivariant Bernoulli.
+* The multinomial NB model has only 1 feature.
 ### Naive Bayesian Classifier Commends
 * Conditional independence, therefore loss of accuracy
 * Easy to implement
@@ -699,26 +710,36 @@
 ### Generalizing LR to Multiple Classes 
 
 ## Support Vector Machine
-### Linear Classifiers
-### SVM 
-### Maximum Margin: Formalization
-### Largest Margin
-### Geometric Margin
-### Help from Inner Product
-### Derivation of Geometric Margin
-### Linear SVM Mathematically
-### Solving the Optimisation Problem
-### Geometric Interpretation
-### The Optimisation Problem Solution
-### Soft Margin Classification
-### Classification with SVMsLinear SVMs Summary
-### Non-Linear SVMs
-### The Kernel Trick
-### Why Features Combinations?
-### String Kernel
-### Classication + SVM + Kernel
+* [Good lecture](https://www.youtube.com/watch?time_continue=1878&v=_PwhiWxHK8o)
+### General Idea
+* Uses a nonlinear mapping to transform the original training data into a higher dimension
+* Search for the linear optimal separating hyperplane (ie. **decision boundary**)
+  * The decision boundary is used to separate one class from another.
+* SVM finds the hyperplane using *support vectors* (essentially training tuples) and **margins** (ie. given by the support vectors).
+  * Essentially we're are trying to find the MMH (maximal margin hyperplane) between the two support vectors.
+  * Think of this as finding the "widest street" between the two classes.
+### Maximum Margin
+* ![SVM Margin](assets/svm-margin.png)
+### Optimisation Problem in Primal Form
+* ![Optimisation Problem](assets/optimisation-svm.png)
+### Classification
+* ![Classifying with SVM](assets/svn-classification.png)
+### Kernel
+* ![General idea about the kernel trick](assets/kernel-trick.png)
+* Allows us to make a non-separable problem "separable"
+* Map into a better representation (different dimensionality for ease?)
+* Common Kernels
+  * Linear
+  * Polynomial: K(x,z) = (1 + x^T * z)^d
 ### Pros and Cons of the SVM Classifier
-
+* Pros
+  * Less prune to overfitting
+  * Fast classifcation 
+  * Works well when features > samples
+  * Can adapt to different objects (due to kernel)
+* Cons
+  * Slow training: training doesn't scale well with number of samples
+  * Hyper-parameters need tuning
 
 # 5. Hidden Markov Model
 ## Applications
