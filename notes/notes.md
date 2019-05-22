@@ -23,7 +23,7 @@
 * Other Applications
   * Text mining (ie. reddit, email) ~ Web mining for sentiment analysis etc
   * Stream data mining (ie. twitter, live flow of information that's constantly incoming)
-# Market Analysis and Management
+## Market Analysis and Management
 * Where do we get this data from?
   * Credit card transations
   * Loyality cards
@@ -43,17 +43,17 @@
 * Provision of summary information
   * Multidimensional summary reports
   * Statistical summary information
-## Knowledge Discovery Process
+## Knowledge Discovery in Databases Process
 ![KDD Process](assets/kdd.png)
 * Learning the application domain
   * Relevant prior knowledge and goals of application
-* Data Selection: Creating a target data set
-* Data Cleaning and Preprocessing:
-* Data Reduction and transformation
-  * Finding useful features, dimenisonality/variable reduction and invarient representatoin
+* Data Selection: Process of retrieving data that's relevant to the analysis task.
+* Data Cleaning and Preprocessing
+  * Data Reduction and transformation
+    * Finding useful features, dimenisonality/variable reduction and invarient representatoin
 * Choosing functions of data mining
   * Summarization, classification, regression, association and clustering
-* Choosing the mining algoirthms
+* Choosing the mining algorithms
 * Pattern evaluation and knowledge presentation
 ## Data Mining and Business Intelligence
 ![Data Mining and Busienss Intelligence](assets/dmbi.png)
@@ -86,7 +86,7 @@
   * Maximize intra-class similarity & minimizing interclass similarity
 * Outlier analysis
   * Outlier: a data object that doesn't comply with the general behaviour of the data
-  * Might be in the form of noise or excpetion. Not useful for insights
+  * Might be in the form of noise or exception. Not useful for insights
 * Trend and evaluation analysis
   * Trend and deviation, ie. regression analysis
   * Sequential pattern mining, periodicity analysis
@@ -94,21 +94,21 @@
 ## Patterns in data
 * DM may produce lots of patterns, but not all of them are useful.
 * Interstingness Measures
-  * A patter that's interesting and easily understood by humans, valid on new or test data with some degress of certainty or some hypothesis that the user is trying to confirm
+  * A pattern that's interesting and easily understood by humans, valid on new or test data with some degress of certainty or some hypothesis that the user is trying to confirm
 * Subjective vs Objective Interestingness Measures:
-  * Subjective: Basd on the user's belief in the data.
-  * Objective: based on statistics and structs of patterns.
+  * Subjective: based on the user's belief in the data.
+  * Objective: based on statistics and structures of patterns within the dataset.
 * Completeness
   * Finding all the intersting patterns
   * Can a DM system find all the interesting patterns?
   * Heuristic based vs. exhaustive search
-  * Association vs Classification vs Clustering
+  * **Association** vs **Classification** vs **Clustering**
 * Optimisation Problem
   * Search for only intersting patterns
   * Can a DM system find only the intesting patterns?
   * Method:
-    * Generate all the patterns and then filter out the unintersting ones
-    * Mining Query Optimization: Generate only the intersting patterns 
+    * Generate all the patterns and then filter out the uninteresting ones
+    * Mining Query Optimization: Generate only the interesting patterns 
 ## Classification Schemes
 * General Functionality
   * Descriptive data mining
@@ -116,9 +116,9 @@
 * Different views, different classifications
   * Kinds of data to be mined
   * Kinds of knowledge to be discovered
-  * Kinds of techniques utilized
+  * Kinds of techniques utilised
   * Kinds of applications adapted 
-## Multi-Deimension View of Data Minig
+## Multi-Dimensional View of Data Mining
 * Data to be mined
   * Relational, data warehouse, transactional, stream, object-oriented/relational, active, spatial, time-series, text, multi-media, heterogeneneous. legacy, webpages
 * Knowledge to be mined
@@ -128,14 +128,14 @@
 * Applications Adapted
   * Retail, telecommunication, banking, fraud analysis, bio-data mining, stock market analysis, web mining
 ## Issues in Data Mining
-* Mining Methodolody
+* Mining Methodology
   * Mining knowledge in different sort of formats: biodata, stream, web etc
-  * Performaces: efficiency, effectiveness and scalability
+  * Performance: efficiency, effectiveness and scalability
   * Pattern evaluation
   * Incorporation of background knowledge
-  * Handling noise and imcomplete data
+  * Handling noise and incomplete data
   * Parallel, distributed and incremental mining methods
-  * Knowledge Fusion: Integration fo discoveryed knowledge with existing knowledge
+  * Knowledge Fusion: Integration to discovered knowledge with existing knowledge
 * User Interaction
   * Data mining query languages and ad-hoc mining
   * Expression and visualization of data mining results
@@ -149,12 +149,12 @@
 ## Data Analysis Problems
 * Redundant data found across departments
 * Hetergeneous sources
-  * Relations DBMS
+  * Relational DBMS
   * Unstructured data in files (eg. MS Excel) and in documents (MS Word)
 * Data is suited for different operating systems 
   * Doesn't integrate well across departments
 * Bad data quality
-  * Mising data, imprecise data etc
+  * Missing data, imprecise data etc
 * Data is volatile
   * Data deleted in operating systems
     * Data changes over time - no historical information
@@ -170,7 +170,7 @@
 * Integrating multiple heterogeneous data sources 
   * Relational DBs, Flat files etc
 * Data cleaning and data integration techniques are applied
-  * Ensure consistency in naming conventions, encoding structures, attribute measures, etc. among differnt data sources
+  * Ensure consistency in naming conventions, encoding structures, attribute measures, etc. among different data sources
   * When data is moved to the warehouse, it's normalised
 ### Time Variant
 * Time horizon for data warehouse is significantly longer than that of operational systems
@@ -205,7 +205,7 @@
   * Data quality: different sources usually have inconsistent representations, codes and formaats which have to be reconciled.
 ## OLAP Servers
 * Present business users with multidimensional data from data warehouses or data marts, without regarding how the data is stored.
-* Different workloads (OLTP vs OLAP)
+* OLTP is used in an operational environment whereas OLAP is used for analysis.
 * Queries hard/infeasible for OLTP, e.g,
   * Which week we haved the largest amount of sales
   * Does the sales of diary products increase over time?
@@ -219,9 +219,9 @@
 * Datawarehouse is based on a multidimensional data model which views data in the form of a **data cube**, which is a multidimensional generalisation of 2D spreadsheet
 * **Data cubes** are modeled using dimensions and facts.
 * **Facts**: the subject it models. Facts are numerical measures. 
+  * **Measures**: numeric function that can be evaluated at each point in the data cube space.
+    * Distributive: aggregate function that can be computed in a distributed manner as follows. 
 * **Dimensions**: context of the measures
-* **Measures**: numeric function that can be evaluated at each point in the data cube space.
-  * Distributive: affregate function that can be computed in a distributed manner as follows. 
 * **Hierarchies**: provides contexts of different granularities (aka. grains)
 * Goals for dimensional modeling:
   * Surround facts with as much relevant context (dimensions) as possible
@@ -245,6 +245,7 @@
   - ![Concept Hierarchy](assets/concept-hierarchy.png)
 ## Cuboids
 - ![3D view of sales](assets/lattice-of-cuboids.png)
+* [Useful Resource](http://www2.cs.uregina.ca/~dbd/cs831/notes/dcubes/dcubes.html)
 * **Apex cuboid**  is the 0-D cuboid which holds the highest level of the summation. The apex cuboid is typicallly denoted by *all*. 
 * A complete cube of d-dimensions consists of the product of  (L_i+1), from i=1 to d, where L_i is the number of levels (not including ALL) on the i-th dimension.
   * They collectively form the lattice.
@@ -263,7 +264,7 @@
 * **Drill-down**: move down the hierarchy
   * Reverse of roll-up. Introduces more hierarchies.
 * **Slice and dice**: select and project one or more dimensional values
-  * Slice performas a selection on one dimension of the given cube resulting in a subcube.
+  * Slice performs a selection on one dimension of the given cube resulting in a subcube.
     * ![Slice](assets/OLAP_slicing.png)
   * Dice defines a subcube by performing a selection on two or more dimensions.
     * ![Dice](assets/OLAP_dicing.png)
@@ -273,9 +274,9 @@
 ## Logical Models
 * Main approaches to represent these cubes using:
   1. Relational DB Technology
-    * Start schema, snowflake schema, fact constellation  
+       * Star schema, snowflake schema, fact constellation  
   2. Multidimensional Technology
-    * Just as multideminsional data cube
+       * Just as multideminsional data cube
 ### Star Schema
 * A fact table in the middle connected to a set of dimension tables
 * Each dimension is represented by only one table, and each table contains a set of attributes.
@@ -492,12 +493,12 @@
   * Predicts categorical class labels (discrete or nomial)
   * Classifies data, by constructing a model, based on training data and class labels
 * **Regression** (ie. Prediction - supervised)
-  * Models continuous-valued functions, predictos unknown or missing values 
+  * Models continuous-valued functions, predictions unknown or missing values 
 * **Clustering**  (unsupervised)
   * Used to generate class labels by grouping data points
 ## Supervised vs Unsupervised Learning
 * **Supervised Learning**
-  * Supervision: The training data (observations, measurementsm etc) are accompanied by labels indicating the class of the observations.
+  * Supervision: The training data (observations, measurements etc) are accompanied by labels indicating the class of the observations.
   * New data is classified based on the training set
   * Includes classification
 * **Unsupervised learning**
@@ -517,10 +518,10 @@
   * Training Set: used to learn the model, with prelabelled instances data
   * Test Set: Used to validate the model
     * Training error = 1 - (# correctly classified)/(# total instances)
-  * Dev Set: Used to tune model's hyperparamters
+  * Dev Set: Used to tune model's hyperparameters
 ## Lazy vs Eager Learning
 * Lazy Learning
-  * Just store training data without learning it (ie. just stores not processing)
+  * Just store training data without learning it (ie. just stores does no actual "learning")
   * Start classifying when it recieves test data
   * Less time training, but more time evaluating
   * Includes kNN, Case-based reasoning
@@ -541,7 +542,7 @@
 * Each tuple/sample is assumed to belong to a predefined class as determined by the class label attribute
 * The set of tuples used for model construction is the training set
 * The model is represented as classification rules, decision trees or mathematical formulae
-### Model Usage (ie. classification)
+### Model Usage (ie. Classification)
 * Classifying unknown objects
 * Estimate accuracy of the model
   * Accuracy rate is the percentage of test set samples that are correctly classified by the model
@@ -645,7 +646,7 @@
   * ie. posterior = (likelihood x prior) / evidence
 * MAP (maximum posterior hypothesis) 
   * ![MAP](assets/map.png)
-  * Difficuilt to copute, requires knowledge of too many probabilities
+  * Difficuilt to compute, requires knowledge of too many probabilities
   * ie. Need to compute the probability of all classes given the input.
 ### Naive Bayes Classifier
 ![NB Classifier](assets/nb.png)
@@ -665,8 +666,9 @@
     * Bernoulli NB
 #### Mulitnomial NB 
   * TODO
-  * ![MNB](assets/mnb-1.png)
   * ![MNB 2](assets/mnb-2.png)
+  * ![MNB 4](assets/mnb-4.png)
+  * ![MNB 5](assets/mnb-5.png)
   * ![Underflow prevention](assets/mnb-3.png)
 #### Multivariante Bernoulli
   * TODO
