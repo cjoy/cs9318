@@ -3,7 +3,7 @@
 * **Data mining**: discovering interesting patterns from large amounts of data
 * Natural evolution of db technology
 * KDD process involved data cleaning, data integration, data selection, transformation, data mining, pattern evaluation and knowledge presentation
-* Data mining functionalities: characterisation, discrimination, association, classification, clustering, outlier and trend analysis
+* Data mining functionalities: characterization, discrimination, association, classification, clustering, outlier and trend analysis
 * Data mining systems and architectures
 * Major issues in data mining: Different types of data, performance, different DM languages, 
 ## Data Mining
@@ -11,7 +11,7 @@
 * Searching for patters of interest
 * Also known as:
   * knowledge discovery in databases (KDD)
-  * knowledge extracton
+  * knowledge extraction
   * data analysis
   * information harvesting
 ## Potentional Application
@@ -25,8 +25,8 @@
   * Stream data mining (ie. twitter, live flow of information that's constantly incoming)
 ## Market Analysis and Management
 * Where do we get this data from?
-  * Credit card transations
-  * Loyality cards
+  * Credit card transactions
+  * Loyalty cards
   * Discount coupons
   * Customer complaint calls
   * Lifestyle studies
@@ -50,13 +50,13 @@
 * Data Selection: Process of retrieving data that's relevant to the analysis task.
 * Data Cleaning and Preprocessing
   * Data Reduction and transformation
-    * Finding useful features, dimenisonality/variable reduction and invarient representatoin
+    * Finding useful features, dimensionality/variable reduction and invariant representation
 * Choosing functions of data mining
   * Summarization, classification, regression, association and clustering
 * Choosing the mining algorithms
 * Pattern evaluation and knowledge presentation
 ## Data Mining and Business Intelligence
-![Data Mining and Busienss Intelligence](assets/dmbi.png)
+![Data Mining and Business Intelligence](assets/dmbi.png)
 ## Architecture - Typical Data Mining System
 ![Architecture](assets/dmarchi.png)
 ## Kinds of Data
