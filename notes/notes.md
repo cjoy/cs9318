@@ -612,23 +612,57 @@
   * The leaf node holds the class prediction
   * ![DT Rules](assets/dt_rules.png)
 ### ID3 (Iterative Dischotomiser) Algoritrm
-
+* Algorithm
+  1. Compute the entropy for data-set
+  2. For every attribute/feature:
+        1. Calculate entropy for all categorical values
+        2. Take average information entropy for the current attribute
+        3. Calculate gain for the current attribute
+  3. Pick the highest gain attribute.
+  4. Repeat until we get the tree we desired.
 * Requirements
+  * **Entropy** ~> `I(s1,...,sm)`
+  * **Expected Entropy** ~> `E(A)`
+  * **Information Gain** ~> `Gain(A)`
   * ![ID3 Requirements](assets/id3_1.png)
-* Psuedocode
-  * ![ID3 Psuedocode](assets/id3_2.png)
-
-### The CART Algorithm (with gini index)
-* All attributes are assumed continuous-valued.
-* CART = Classification and Regression Tree
-* Gini Index
+#### ID3 Example
+* Using the following dataset
+  * ![Dataset](assets/id3_1.jpeg)
+1. Computer the entropy for the entire weather dataset.
+     * ![Dataset](assets/id3_2.jpeg)
+2. For each feature calculate the entropy and information gain.
+     * ![Entropy & Info Gain for each attribute](assets/id3_3.jpeg)
+3. Choose the attribute with the highest gain.
+     * ![Attribute with the highest gain](assets/id3_4.jpeg)
+     * Therefore our **root node is outlook**
+4. Repeat the above for subtrees
+     * ![Root](assets/id3_5.jpeg)
+     * ![Repeated](assets/id3_6.jpeg)
+     * ![Final Tree](assets/id3_7.jpeg)
+### The CART (Classification and Regression Tree) Algorithm
+* Gini Index: 
+  * Gini = 1 – Σ (Pi)^2 for i=1 to number of classes
+  * Gini index used as cost function to evaulate splits in datasets
   * All attribute are assumed to be continuous
   * Assumed there exists several possible split values for each attribute
-  * May need other tools such as clustering to get the possible split values
   * Can be modified for categorical attributes
 * Induces binary split => binary decision trees
 * Attribute with the smallest gini is chosen as the split node
 * ![Gini Index](assets/gini.png)
+#### CART Example
+* Using the following dataset ([Original Example](https://sefiks.com/2018/08/27/a-step-by-step-cart-decision-tree-example/)):
+    * ![CART Dataset](assets/cart-1.png)
+1. Calculate the gini index and gini split index for each attribute (ie. Outlook, Temp, Humidity, Wind, Decision).
+     * ![CART 2](assets/cart-2.png)
+     * ![CART 3](assets/cart-3.png)
+     * ![CART 4](assets/cart-4.png)
+     * ![CART 5](assets/cart-5.png)
+2. Decide the winner (ie. lowest gini index)
+     * Winner is outlook, so it becomes the root.
+3. Now repeat the following above with the subtrees (ie. each outcome subtable)
+     * ![CART 6](assets/cart-6.png)
+* The final tree should look like the following:
+  * ![CART 7](assets/cart-7.png)
 ### Overfitting/Underfitting
 * Overfitting in decision trees occur when there are too many branches and some may reflect anomalies due to noise or outliers
 * Poor accuracy for unseen samples
@@ -851,17 +885,17 @@
 #### Example
 ![kmeans](assets/kmeans.png)
   * [Youtube Video](https://www.youtube.com/watch?v=_aWzGGNrcic)
-#### Pros & Cons
-* Pros
+#### Advantages & Disadvantages
+* Advantages
   * Relatively efficient
     * O(tkn) when n is number of objects, k is number of cluster and t is number of iterations.
-* Weakness
+* Disadvantages
   * Can't work with categorical data
   * Need to specify k, the number of clusters in advance
   * Unable to handle noisy data and outliers
 
 ## Heirarchical Methods
-* Produce a set of nester clustered organised as a hierarchical tree.
+* Produce a set of nester clusters organised as a hierarchical tree.
 * **Dendrogram** is commonly used to represent hierarchical clusters.
   * A tree like diagram that records the sequence of merges/splits
   * A clustering of the data objects is obtained by cutting the dendrogram at the desired level and each connected component is a cluster 
@@ -877,11 +911,25 @@
        * At each step, split a cluster until each cluster contains a point
 * Use a similarity/distance matrix
   * Merge or split one cluster at a time
+### Aggolomerative Clustering Algorithm
+1. Compute the proximity matrix (ie. matrix of pair-wise distances).
+2. Let each data point be a cluster.
+3. Repeat the following until a single cluster remains.
+      1. Merge the two closest clusters.
+      2. Update the proximity matrix.
+* Single-link, complete-link, group aveerage are different approaches in computing the distance between two clusters.
 ### Single-link
 * Min distance
+* Comments
+  * Can't handle non-elliptical shapes
+  * Sensitive to noise and outliers
 ### Complete-link
 * Max distance
-### Group Average Hierarchical Clustering
+* Comments
+  * Sensitive to noise and outliers
+  * Tends to break large clusters
+  * Biased towards globalar clusters
+### Group Average 
 
 ## Graph-based Methods
 ### Unnormalized Graph Laplacian
