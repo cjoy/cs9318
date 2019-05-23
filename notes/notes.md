@@ -919,23 +919,32 @@
       2. Update the proximity matrix.
 * Single-link, complete-link, group aveerage are different approaches in computing the distance between two clusters.
 ### Single-link
-* Min distance
+* Min distance / Max similarity
+* ![Single link](assets/single-link.png)
 * Comments
   * Can't handle non-elliptical shapes
   * Sensitive to noise and outliers
 ### Complete-link
-* Max distance
+* Max distance / Min similarity
+* ![Complete link](assets/complete-link.png)
 * Comments
   * Sensitive to noise and outliers
   * Tends to break large clusters
   * Biased towards globalar clusters
 ### Group Average 
-
-## Graph-based Methods
+* [Video Example](https://www.youtube.com/watch?v=T1ObCUpjq3o)
+* Similarity of two clusters is the average of pairwise-similary between two points in the two clusters
+## Spectral Clustering
+* Data points are treated as nodes of a graph.
+  * Thus treated as a graph partitioning problem.
+  * Nodes mapped to low-dimensional space to easily segregate clusters.
+* A ~ Adjacency Matrix
+* D ~ Degree Matrix
+* L ~ Laplacian Matrix
+  * `L = D - A`
 ### Unnormalized Graph Laplacian
 ### Spectral Clustering Algorithm
 ### Embedding
-
 
 # 7. Association Rule Mining
 ## What's Association Mining?
