@@ -530,9 +530,18 @@
   * More time learning, but less time evaluating
   * Includes decision-tree and bayesian classification
 ## Generative vs Discrimitive Learning
-* ![Generative vs Discriminative](assets/gen-v-disc.jpg)
-* Naive Bayes is generative.
-* Logistic regression is discriminative.
+* **Generative** ~> probabilistic model of each class.
+  * Models the actual distribution of each class.
+  * Generative classifiers include
+    * Naive Bayes
+    * HMM
+* **Discriminative** ~> uses a decision boundary to distinguish classes
+  * Learns the boundary between classes.
+  * Discriminative classifiers include
+    * Decision Tree
+    * SVM
+    * Clustering
+* Both are a form supervised learning.
 ## Instance based learning
 * Storing training examples and delay the processing until a new instance must be classified.
 ### KNN
@@ -577,18 +586,24 @@
 
 ## Decision Tree Classifier
 * Supervised Learning Algorithm
-* Each node represents an attribute
-* Each link represents a decision (ie. attribute value)
-* Leaf nodes represent the class attribute (ie. the label)
+* Not a black box algorithm like many other machine learning algorithms.
+* Structure
+  * **Node** = Attribute (ie. Feature)
+  * **Link** = Attribute Value (ie. Decision)
+  * **Leaf** = Class label (ie. Outcome)
 * Two common algorithms developed around the same time
-  1. ID3, uses
-       * Entropy Function
-       * Information Gain
-  2. CART
-       * Gini Index
-### Decision Tree Example
+  1. **ID3**
+       * Metric:
+         * Entropy Function
+         * Information Gain
+       * Multi-branch Tree
+  2. **CART**
+       * Metric:
+         * Gini Index
+       * Binary Tree
+<!-- ### Decision Tree Example
 * ![DTree Training Example](assets/dt_example.png)
-* ![DTree Output Example](assets/dt_output.png)
+* ![DTree Output Example](assets/dt_output.png) -->
 ### Extracting Classification Rules
 * Represent the knowledge in the form of IF-THEN rules
   * Rules are easier for humans to understand
@@ -597,12 +612,14 @@
   * The leaf node holds the class prediction
   * ![DT Rules](assets/dt_rules.png)
 ### ID3 (Iterative Dischotomiser) Algoritrm
+
 * Requirements
   * ![ID3 Requirements](assets/id3_1.png)
 * Psuedocode
   * ![ID3 Psuedocode](assets/id3_2.png)
+
 ### The CART Algorithm (with gini index)
-* TODO
+* All attributes are assumed continuous-valued.
 * CART = Classification and Regression Tree
 * Gini Index
   * All attribute are assumed to be continuous
@@ -628,8 +645,7 @@
 * Use a separate validation set
 * Use minimum description length (MDL) principle
   * Halt growth of the tree when the encoding is minimized
-### Pessimistic Post-pruning
-* TODO 
+
 
 ## Bayesian Classification
 * **Probabilistic Learning**: Grounded in probability theory, easy to replicate
