@@ -14,7 +14,7 @@
   * knowledge extraction
   * data analysis
   * information harvesting
-## Potentional Application
+## Potential Application
 * Data analysis and decision support
   * Market analysis and management
     * This include specifically targeting customers, market basket analysis and market segmentation etc
@@ -998,7 +998,7 @@
   * where `N` is the total number of transactions.
 * **Confidence**: 
   * `Conf(A -> B) = P(B | A) = Support(A ∪ B) / Support(A)`
-* If association rule meets the minimum support and confidence, we can say it's **strong**.
+* If association rule meets the minimum required support and confidence, we can say it's **strong**.
 ## Mining Association Rules
 * ![Example](assets/assos_mining.png)
 ## Association Rule Mining Algorithms
@@ -1011,7 +1011,7 @@
 ## Apriori property
 * A frequent itemset is an itemset whose support is greater than the minimum support
 * **Apriori property**: any subsets of a frequent itemset are also frequent itemsets
-  * Set theory: **Anti-monotone** proporty of support -> Anny supersets of an infrequent itemset are also infrequent itemsets.
+  * Set theory: **Anti-monotone** proporty of support -> Any supersets of an infrequent itemset are also infrequent itemsets.
 * **Apriori pruning principles**: Any itemset which is infrequent, its superset should not be generated/tested.
 ## Apriori Algorithm
 * Perform level-wise candidate generation (ie. Ci)
@@ -1019,6 +1019,7 @@
   * Repeat the above with the remaining candidates
 * Using the final candidates, generate association rules.
 * ![Apriori Example](assets/apriori.png)
+* [Apriori walkthrough video](https://www.youtube.com/watch?v=WgaYxdld6xQ)
 ## FP (Frequent Pattern) Growth Algorithm
 * Divide and conqure algorithm.
 * No candidate generation - like with apriori algorithm
