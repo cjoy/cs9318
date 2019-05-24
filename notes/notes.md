@@ -805,8 +805,12 @@
 
 # 5. Hidden Markov Model
 ## Applications
-## HMM definition
-## Markov Model
+* Part-Of-Speech Tagging
+* Named Entity Recognition
+
+
+<!-- ## HMM definition
+## Markov Chains
 ## Sequence Probability
 ## Generative Process
 ## 3 Problems
@@ -814,7 +818,7 @@
 ## Casting into Evaluation Problem
 ## Decoding Problem
 ## Join Probability
-## Viterbi Algorithm
+## Viterbi Algorithm -->
 
 # 6. Clustering
 ## What is Cluster Analysis
@@ -938,13 +942,20 @@
 * Data points are treated as nodes of a graph.
   * Thus treated as a graph partitioning problem.
   * Nodes mapped to low-dimensional space to easily segregate clusters.
+### Unnormalized Graph Laplacian
 * A ~ Adjacency Matrix
 * D ~ Degree Matrix
 * L ~ Laplacian Matrix
   * `L = D - A`
-### Unnormalized Graph Laplacian
+* ![xTAx](assets/xTAx.png)
 ### Spectral Clustering Algorithm
-### Embedding
+1. Pre-processing
+   * Construct a matrix representation of the graph
+2. Decompositiion
+   * Compute eigenvalues and eigenvectors of the matrix
+   * Map each point to a lower-dimensional representation based on one or more eigenvectors
+3. Grouping
+   * Assign points to two or more clusters, based on the new representation
 
 # 7. Association Rule Mining
 ## What's Association Mining?
