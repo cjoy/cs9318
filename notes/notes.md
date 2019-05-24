@@ -804,14 +804,40 @@
   * Hyper-parameters need tuning
 
 # 5. Hidden Markov Model
+* [Helpful Youtube Playlist](https://www.youtube.com/playlist?list=PLlQBy7xY8mbI13gwXZz4r55MeatSZOqm7)
 ## Applications
 * Part-Of-Speech Tagging
 * Named Entity Recognition
-
-
+## Hiden Markov Model
+* Input Sentence: `x = x1,x2,...,xn`
+  * xi is the i'th word in the sentence
+* Tag sequence: `y = y1,y2,...,yn`
+  * yi is the i'th tag in the sentence
+* We'll use an HMM to define 
+  * `p(x1,x2,...xn,y1,y2,...,yn)`
+  * for any sentence `x1,...,xn` and tag sequence of the same length.
+* The most likely tag sequence for `x` is:
+  * `argmax p(x1,...,xn,y1,...,yn)` for `y1...yn`
+### Trigram HMMs
+* `V` is vocab set
+* `S` is tag set
+* `x` is element of `V`
+  * `x_0 = x_-1 = *`
+* `y` is element of `S`
+  * `y_n+1 = STOP`
+* Joint probability
+  * ![THMM](assets/thmm.png)
+  * `q(s|u,v)` ~> transitions probability
+  * `e(x|s)` ~> emmission probability
+### HMM Overview
+![HMM](assets/hmm.png)
+### Problems with HMM
+1. Brute force search is inefficent
+    * ie. when trying to compute  `argmax p(x1,...,xn,y1,...,yn)` for `y1...yn`
+    * `O(|S|^|V|)` where `|S|` is length of sentence and `|V|` length of vocab. 
+### Viterbi Algorithm
 <!-- ## HMM definition
 ## Markov Chains
-## Sequence Probability
 ## Generative Process
 ## 3 Problems
 ## Application - Typed Words
