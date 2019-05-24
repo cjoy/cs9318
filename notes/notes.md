@@ -317,7 +317,7 @@
   2. How to compute the cuboids efficiently?
 ### ROLAP
 #### Top-down Approach
-* Involdes computing an cube by traversing down a multi-dimnensional lattice formed from the attributes in an input table.
+* Involves computing an cube by traversing down a multi-dimnensional lattice formed from the attributes in an input table.
 * Begins by computing the frequent attribute value combinations for the attribute set at the top of the tree.
 ![Top-down approach](assets/tdCTree.gif)
 ### Botton-Up Computation (BUC) Approach
@@ -370,7 +370,7 @@
 * **Data Cleaning**: Filling in missing values, smoothing noisy data, identify or remove outliers and resolve inconsistencies
 * **Data Integration**: Integration og multiple databases, data cubes or files 
 * **Data Transformation**: Normalisation and aggregation 
-* **Data Reduction**: Obtains reduced represention in volume but produces similar analytical results
+* **Data Reduction**: Obtains reduced representation in volume but produces similar analytical results
 * **Data Discretization & Data Type Conversion**
 ## Data Cleaning
 ### Missing Data
@@ -836,15 +836,14 @@
     * ie. when trying to compute  `argmax p(x1,...,xn,y1,...,yn)` for `y1...yn`
     * `O(|S|^|V|)` where `|S|` is length of sentence and `|V|` length of vocab. 
 ### Viterbi Algorithm
-<!-- ## HMM definition
-## Markov Chains
-## Generative Process
-## 3 Problems
-## Application - Typed Words
-## Casting into Evaluation Problem
-## Decoding Problem
-## Join Probability
-## Viterbi Algorithm -->
+* ![Viterbi](assets/viterbi.png)
+* ![Viterbi Example](assets/viterbi-example.png)
+* ![Viterbi Definition](assets/viterbi-definition.png)
+### Complete Viterbi Algorithm
+* Backpointers are used to backtrace the tagsequence, given the argmax.
+* `O(|V|*|S|^3)`
+  * Compare with the bruteforce method (ie. `O(|S|^|V|)`)
+* ![Viterbi Complete](assets/viterbi-complete.png)
 
 # 6. Clustering
 ## What is Cluster Analysis
@@ -982,6 +981,7 @@
    * Map each point to a lower-dimensional representation based on one or more eigenvectors
 3. Grouping
    * Assign points to two or more clusters, based on the new representation
+
 
 # 7. Association Rule Mining
 ## What's Association Mining?
