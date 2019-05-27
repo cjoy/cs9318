@@ -8,7 +8,7 @@
 * Major issues in data mining: Different types of data, performance, different DM languages, 
 ## Data Mining
 * Extraction of interesting patterns from huge amounts of data
-* Searching for patters of interest
+* Searching for patterns of interest
 * Also known as:
   * knowledge discovery in databases (KDD)
   * knowledge extraction
@@ -93,19 +93,19 @@
   * Similarity-based analysis
 ## Patterns in data
 * DM may produce lots of patterns, but not all of them are useful.
-* Interstingness Measures
-  * A pattern that's interesting and easily understood by humans, valid on new or test data with some degress of certainty or some hypothesis that the user is trying to confirm
+* Interestingness Measures
+  * A pattern that's interesting and easily understood by humans, valid on new or test data with some degree of certainty or some hypothesis that the user is trying to confirm
 * Subjective vs Objective Interestingness Measures:
   * Subjective: based on the user's belief in the data.
   * Objective: based on statistics and structures of patterns within the dataset.
 * Completeness
-  * Finding all the intersting patterns
+  * Finding all the interesting patterns
   * Can a DM system find all the interesting patterns?
   * Heuristic based vs. exhaustive search
   * **Association** vs **Classification** vs **Clustering**
 * Optimisation Problem
-  * Search for only intersting patterns
-  * Can a DM system find only the intesting patterns?
+  * Search for only interesting patterns
+  * Can a DM system find only the interesting patterns?
   * Method:
     * Generate all the patterns and then filter out the uninteresting ones
     * Mining Query Optimization: Generate only the interesting patterns 
@@ -358,7 +358,7 @@
 * Data can be dirty
   * **Incomplete**: attributes left blank
   * **Noisy**: containing outliers 
-  * **Inconsistent**:  conmtaining discrepanies in data format
+  * **Inconsistent**:  containing discrepencies in data format
 * Caused by when data is being collected
   * Different data sources
   * Human error
@@ -860,8 +860,8 @@
 * Information Retrieval
 ## Clustering Criteria
 * What is Good Clustering?
-  * High **intra-class** similarity 
-  * Low **inter-class** similarity
+  * High **intra-class** similarity (Between clusters)
+  * Low **inter-class** similarity (Within clusters)
   * The quality of a clustering result depends on the **similarity measure** used by the method and its implementation.
   * Quality is measured by its ability to discover some or all the hidden patterns.
 ## Distance / Similarity
@@ -871,9 +871,11 @@
   * `S(a,a) = 1`
   * `S(a,b) = S(b,a)`
 * Dissimilarity can be defined as `D(a, b) = 1 - S(a,b)`
+* Similarity is  the inversion of distance (ie. Highly similar -> Low distance)
+  * `S(a,b) = 1 - d(a,b)`
 ### Types of Data
 * Distance functions are different for each type of variable.
-* Weights should be applied to differnet variables. 
+* Weights should be applied to different variables. 
 * Interval-Scaled Variables
   * TODO
 * Binary Variables
@@ -898,7 +900,7 @@
 * Cost of a cluster:
   * Euclidian distance from the cetroid to each point.
 ### k-Means
-* Instance of the expectation maximisation algorithm.
+* Essentially an expectation maximisation algorithm.
 * Attributes HAVE to be numeric
   * ie. Can't be categorical or ordinal
 #### Algorithm (Lloyds)
@@ -946,7 +948,7 @@
 3. Repeat the following until a single cluster remains.
       1. Merge the two closest clusters.
       2. Update the proximity matrix.
-* Single-link, complete-link, group aveerage are different approaches in computing the distance between two clusters.
+* Single-link, complete-link, group average are different approaches in computing the distance between two clusters.
 ### Single-link
 * Min distance / Max similarity
 * ![Single link](assets/single-link.png)
