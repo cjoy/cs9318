@@ -6,5 +6,4 @@
 * [Labs](https://github.com/mrchrisjoy/cs9318/tree/master/labs)
 ## Advice
 * Use other resources when studying if you find it hard to understand concepts.
-* Ask for help on the forums.
-* Make your own notes and try to understand rather than copy.
+* Make your own notes and try to understand the material than memorise.
